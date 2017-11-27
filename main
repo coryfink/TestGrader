@@ -1,0 +1,59 @@
+#include <string>
+#include <iostream>
+#include “assignment.h”
+Using namespace std;
+
+Int main () {
+String input = “”;
+
+while(input.ignoreCase() != “exit”) {
+    Cout << “Enter a number for what you would like to do: \n 1. Enter Key\n";
+    "2. Enter Test\n 3. Grade Current Tests\n 4. Calculate Statistics\n 5. Omit a Question\n";
+    "6. Add a Curve\n 7. Print Grades and Statistics\n exit”;
+
+    Cin >> input;
+
+    Switch (input) {
+        Case “1”: //key
+            //ask for number of questions, assignment name, and send the data in the
+            //file they choose to the key method/variable in the assignment class
+        Break;
+
+        Case “2”: //enter tests
+            //enter the name of the test files
+            //add the new test file to an array of all of the tests
+            //send the values of each line of a test file to an array of chars
+        Break;
+
+        Case “3”: //grader
+            //go through the array of tests, pull the values from the test object (the
+            //lines from the test file) and check each answer
+            //send the overall grade to a new array, would also need a binary way to
+            //say whether a specific answer is right or wrong
+        Break;
+
+        Case “4”: //calculator
+            //add up the values of the int array of grades and find a high, mean, low,
+            //median, percentiles, etc.
+        Break;
+
+        Case “5”: //omitter
+            //this should be able to ignore a specific questions weight on a grade,
+            //ideally not by just deleting the index at that point on the key/tests, then
+            //send the tests back through the grader code above
+        Break;
+
+        Case “6”: //curver
+            //ask for what you want the median/mean/percentiles you want the test to
+            //be at. Then add points to all the tests (every indices in the array)
+            //accordingly
+        Break;
+
+        Case “7”: //printer
+            //call all the .print methods for the class functions or just cout with pointers
+            //and arrays
+        Break;
+      }
+
+}
+}
