@@ -1,19 +1,27 @@
 #ifndef _ASSIGNMENT_H_
 #define _ASSIGNMENT_H_
 
-#include <string.h>
+#include <string>
+#include <vector>
 
 using namespace std;
 
 Class Assignment {
   
-  vector<float > grades;
+  vector<float> grades;
+  vector<string> fill_in_the_blank;
+  
+  vector<float> key;
+  vector<string> FitB_key;
+  
   float high;
   float low;
   float mean;
   
 public: 
   
+    void grader(vector<float> grades);
+    void FitB_grader(vector<string> fill_in_the_blank);
   
     //Pass in vector containing grades to calculate stats
     float calculateHigh(vector<float > grades);
@@ -33,6 +41,29 @@ public:
 
 //write all methods after this
 
+void Assignment::grader(vector<float> grades) {
+	for (vector<float>::iterator key_iter = key.begin() ; key_iter != key.end() ; key_iter++) {
+      for (vector<float>::iterator iter = grades.begin() ; iter != grades.end() ; iter++) {//initializes the iterator method from vector class, then starts at the beginning of the vector until it reaches the end comparing the answers of a test to the key
+        if (*iter == *key_iter) {
+          cout << "answer " << *iter << " is correct\n"; //waiting for other methods to see how we want to deal with correct/incorrect answers
+        } else {
+          cout << "answer " << *iter << " is incorrect\n";
+        }
+      }
+  }
+}
+
+void Assignment::FitB_grader(vector<string> fill_in_the_blank) {
+    for (vector<string>::iterator FitB_key_iter = FitB_key.begin() ; FitB_key_iter != FitB_key.end() ; FitB_key_iter++) {
+        for (vector<string>::iterator FitB_iter = fill_in_the_blank.begin() ; FitB_iter != fill_in_the_blank.end() ; FitB_iter++) {
+            if (*FitB_iter == *FitB_key_iter) {
+                cout << "answer " << *FitB_iter << " is correct\n";
+            } else {
+                cout << "ansewr " << *FitB_iter << " is incorrect\n";
+            }
+        }
+    }
+}
 
 float Assignment::calculateHigh(vector<float > grades){
     
@@ -69,6 +100,7 @@ float Assignment::calculateMean(vector<float > grades) {
 }
 //I think .size will give us a bit value of the actual size of the array, not
 //the amt of elements, we may need to use *sizeof(grades)/sizeof(grades[0])*
+//maybe .capacity() is what we are looking for? need to test -mike
 float Assignment::calculateMedian(vector<float > grades) {
     //Odd student size case
     if (grades.size()%2 == 1){
@@ -99,7 +131,7 @@ float Assignment::calculateMode(vector<float > grades) {
     }
     return possibleMode;
 }
-float Assignment::getHigh() {
+float Assignment::getHigh() {//I dont think this->high works, pretty sure you have to do grades->high ? -mike
     
     return this->high;
 }
