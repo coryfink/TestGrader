@@ -27,6 +27,9 @@ public:
     float calculateHigh(vector<float > grades);
     float calculateLow(vector<float > grades);
     float calculateMean(vector<float > grades);
+    float calculateMode(vector<float > grades);
+    float calculateMedian(vector<float > grades);
+    void organizeGrades(vector<float > &grades);
     float calculateCurve();
   
     //Accessor methods
