@@ -54,6 +54,15 @@ int main () {
 
 			case 5: //omitter
 				cout << "omitter works\n";
+				int deletedIndex;
+				cout<<"Please enter the question number that you would like to have omitted\n";
+				cin<<deletedIndex;
+				if(deletedIndex > 0){
+					omitQuestion(studentAnswers, deletedIndex);
+				}
+				else{
+					cout<<"That question number is invalid\n";
+				}
 				//this should be able to ignore a specific questions weight on a grade,
 				//ideally not by just deleting the index at that point on the key/tests, then
 				//send the tests back through the grader code above
