@@ -12,7 +12,6 @@ class Assignment {
   vector<string> student_answers;//where we will store new test answers
   float curve;
   vector<string> fill_in_the_blank;//where we fill in the fill in the blank answers
-  
   vector<string> key;//the correct answers to the text
   vector<string> FitB_key;
   
@@ -89,6 +88,9 @@ float Assignment::calculateCurve(vector<float> grades){
 		grades[i]=grades[i]+curve;
 	}
 	
+}
+void Assignment::omitQuestion(vector<string> studentAnswers, int deletedIndex){
+
 }
 float Assignment::calculateHigh(vector<float > grades){
     
