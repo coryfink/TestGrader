@@ -6,7 +6,7 @@
 
 using namespace std;
 
-Class Assignment {
+class Assignment {
   
   vector<float> grades;
   vector<float> curve;
@@ -76,7 +76,7 @@ float Assignment::calculateCurve(vector<float> grades){
     cout << "Please enter the desired average for this exam. << endl;
     cin >> inputAverage;
 	
-	float realAverage = grades.calculateMean();
+	float realAverage = grades.calculateMean(); //**calculateMean(grades)
 	
 	if(realAverage < inputAverage){
 		curve = inputAverage - realAverage;
