@@ -52,9 +52,6 @@ float Test::calculateCurve(vector<float> grades){
 	}
 	
 }
-void Test::omitQuestion(vector<string> studentAnswers, int deletedIndex){
-	studentAnswers.erase(studentAnswers.at(deletedIndex-1);
-}
 float Test::calculateHigh(vector<float > grades){
     
     float high = 0;
