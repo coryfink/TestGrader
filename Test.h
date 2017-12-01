@@ -68,7 +68,7 @@ float Test::calculateCurve(vector<float> grades){
     float inputAverage;
     float curve;
 
-    cout << "Please enter the desired average for this exam. << endl;
+    cout << "Please enter the desired average for this exam." << endl;
     cin >> inputAverage;
 	
 	float realAverage = grades.calculateMean(); //**calculateMean(grades)
