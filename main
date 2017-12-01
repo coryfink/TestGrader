@@ -58,7 +58,7 @@ int main () {
 				cout<<"Please enter the question number that you would like to have omitted\n";
 				cin<<deletedIndex;
 				if(deletedIndex > 0){
-					omitQuestion(studentAnswers, deletedIndex);
+					omitQuestion(student_answers, deletedIndex);
 				}
 				else{
 					cout<<"That question number is invalid\n";
