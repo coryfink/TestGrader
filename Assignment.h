@@ -9,6 +9,7 @@ using namespace std;
 Class Assignment {
   
   vector<float> grades;
+  vector<float> curve;
   vector<string> fill_in_the_blank;
   
   vector<float> key;
@@ -27,6 +28,7 @@ public:
     float calculateHigh(vector<float > grades);
     float calculateLow(vector<float > grades);
     float calculateMean(vector<float > grades);
+    float calculateCurve();
   
     //Accessor methods
     float getHigh();
@@ -65,6 +67,29 @@ void Assignment::FitB_grader(vector<string> fill_in_the_blank) {
     }
 }
 
+float Assignment::calculateCurve(vector<float> grades){
+
+    //not finished yet, trying to figure out how to return the "curved" grades vector
+    float inputAverage;
+    float curve;
+
+    cout << "Please enter the desired average for this exam. << endl;
+    cin >> inputAverage;
+	
+	float realAverage = grades.calculateMean();
+	
+	if(realAverage < inputAverage){
+		curve = inputAverage - realAverage;
+	}
+	else{
+		curve = 0;
+	}
+	for (int i = 0; i<grades.size(); i++){
+		grades[i]=grades[i]+curve;
+	}
+
+	
+}
 float Assignment::calculateHigh(vector<float > grades){
     
     float high = 0;
