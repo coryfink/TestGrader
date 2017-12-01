@@ -7,11 +7,13 @@
 using namespace std;
 
 class Assignment {
+ private:
+  vector<boolean> grades;//the collection of all student grades on a specific assignment
+  vector<string> student_answers;//where we will store new test answers
+  float curve;
+  vector<string> fill_in_the_blank;//where we fill in the fill in the blank answers
   
-  vector<float> grades;
-  vector<float> curve;
-  vector<string> fill_in_the_blank;
-  vector<float> key;
+  vector<string> key;//the correct answers to the text
   vector<string> FitB_key;
   
   float high;
@@ -20,16 +22,14 @@ class Assignment {
   
 public: 
   
-    void grader(vector<float> grades);
+    void grader(vector<string> student_answers);
     void FitB_grader(vector<string> fill_in_the_blank);
   
     //Pass in vector containing grades to calculate stats
     float calculateHigh(vector<float > grades);
     float calculateLow(vector<float > grades);
     float calculateMean(vector<float > grades);
-    float calculateMode(vector<float > grades);
     float calculateCurve();
-    void omitQuestion(vector<string> studentAnswers);
   
     //Accessor methods
     float getHigh();
@@ -44,9 +44,9 @@ public:
 
 //write all methods after this
 
-void Assignment::grader(vector<float> grades) {
+void Assignment::grader(vector<string> student_answers) {
    for (vector<float>::iterator key_iter = key.begin() ; key_iter != key.end() ; key_iter++) {
-      for (vector<float>::iterator iter = grades.begin() ; iter != grades.end() ; iter++) {//initializes the iterator method from vector class, then starts at the beginning of the vector until it reaches the end comparing the answers of a test to the key
+      for (vector<float>::iterator iter = student_answers.begin() ; iter != student_answers.end() ; iter++) {//initializes the iterator method from vector class, then starts at the beginning of the vector until it reaches the end comparing the answers of a test to the key
         if (*iter == *key_iter) {
           cout << "answer " << *iter << " is correct\n"; //waiting for other methods to see how we want to deal with correct/incorrect answers
         } else {
@@ -88,7 +88,6 @@ float Assignment::calculateCurve(vector<float> grades){
 	for (int i = 0; i<grades.size(); i++){
 		grades[i]=grades[i]+curve;
 	}
-
 	
 }
 float Assignment::calculateHigh(vector<float > grades){
@@ -102,7 +101,6 @@ float Assignment::calculateHigh(vector<float > grades){
     
     return high;
 }
-
 float Assignment::calculateLow(vector<float > grades) {
     
     float low = 100;
@@ -114,7 +112,6 @@ float Assignment::calculateLow(vector<float > grades) {
     
     return low;
 }
-
 float Assignment::calculateMean(vector<float > grades) {
     
     float sum = 0;
@@ -137,7 +134,6 @@ float Assignment::calculateMedian(vector<float > grades) {
       return (grades[grades.size()/2-1] + grades[grades.size()/2])/2;
     }
 }
-
 //assuming grade array will be in order for mode calculation
 float Assignment::calculateMode(vector<float > grades) {
     int mode = 1;
@@ -161,20 +157,13 @@ float Assignment::getHigh() {//I dont think this->high works, pretty sure you ha
     
     return this->high;
 }
-
 float Assignment::getLow() {
     
     return this->low;
 }
-
 float Assignment::getMean() {
     
     return this->mean;
 }
-
-
-
-
-
 //write all methods before this
 #endif
