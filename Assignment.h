@@ -90,7 +90,7 @@ float Assignment::calculateCurve(vector<float> grades){
 	
 }
 void Assignment::omitQuestion(vector<string> studentAnswers, int deletedIndex){
-
+	studentAnswers.erase(studentAnswers.at(deletedIndex-1);
 }
 float Assignment::calculateHigh(vector<float > grades){
     
