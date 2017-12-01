@@ -1,19 +1,18 @@
-#ifndef _ASSIGNMENT_H_
-#define _ASSIGNMENT_H_
+#ifndef _TEST_H_
+#define _TEST_H_
 
 #include <string>
 #include <vector>
 
 using namespace std;
 
-class Assignment {
+class Test {
  private:
-  vector<boolean> grades;//the collection of all student grades on a specific assignment
   vector<string> student_answers;//where we will store new test answers
   float curve;
   vector<string> fill_in_the_blank;//where we fill in the fill in the blank answers
   vector<string> key;//the correct answers to the text
-  vector<string> FitB_key;
+  vector<string> FitB_key; //
   
   float high;
   float low;
@@ -39,11 +38,7 @@ public:
   
 };
 
-
-
-//write all methods after this
-
-void Assignment::grader(vector<string> student_answers) {
+void Test::grader(vector<string> student_answers) {
    for (vector<float>::iterator key_iter = key.begin() ; key_iter != key.end() ; key_iter++) {
       for (vector<float>::iterator iter = student_answers.begin() ; iter != student_answers.end() ; iter++) {//initializes the iterator method from vector class, then starts at the beginning of the vector until it reaches the end comparing the answers of a test to the key
         if (*iter == *key_iter) {
@@ -55,7 +50,7 @@ void Assignment::grader(vector<string> student_answers) {
   }
 }
 
-void Assignment::FitB_grader(vector<string> fill_in_the_blank) {
+void Test::FitB_grader(vector<string> fill_in_the_blank) {
     for (vector<string>::iterator FitB_key_iter = FitB_key.begin() ; FitB_key_iter != FitB_key.end() ; FitB_key_iter++) {
         for (vector<string>::iterator FitB_iter = fill_in_the_blank.begin() ; FitB_iter != fill_in_the_blank.end() ; FitB_iter++) {
             if (*FitB_iter == *FitB_key_iter) {
@@ -67,7 +62,7 @@ void Assignment::FitB_grader(vector<string> fill_in_the_blank) {
     }
 }
 
-float Assignment::calculateCurve(vector<float> grades){
+float Test::calculateCurve(vector<float> grades){
 
     //not finished yet, trying to figure out how to return the "curved" grades vector
     float inputAverage;
@@ -89,10 +84,10 @@ float Assignment::calculateCurve(vector<float> grades){
 	}
 	
 }
-void Assignment::omitQuestion(vector<string> studentAnswers, int deletedIndex){
+void Test::omitQuestion(vector<string> studentAnswers, int deletedIndex){
 	studentAnswers.erase(studentAnswers.at(deletedIndex-1);
 }
-float Assignment::calculateHigh(vector<float > grades){
+float Test::calculateHigh(vector<float > grades){
     
     float high = 0;
     for (int i = 0; i < grades.size(); i++) {
@@ -103,7 +98,7 @@ float Assignment::calculateHigh(vector<float > grades){
     
     return high;
 }
-float Assignment::calculateLow(vector<float > grades) {
+float Test::calculateLow(vector<float > grades) {
     
     float low = 100;
     for (int i = 0; i < grades.size(); i++) {
@@ -114,7 +109,7 @@ float Assignment::calculateLow(vector<float > grades) {
     
     return low;
 }
-float Assignment::calculateMean(vector<float > grades) {
+float Test::calculateMean(vector<float > grades) {
     
     float sum = 0;
     for (int i = 0; i < grades.size(); i++) {
@@ -126,7 +121,7 @@ float Assignment::calculateMean(vector<float > grades) {
 //I think .size will give us a bit value of the actual size of the array, not
 //the amt of elements, we may need to use *sizeof(grades)/sizeof(grades[0])*
 //maybe .capacity() is what we are looking for? need to test -mike
-float Assignment::calculateMedian(vector<float > grades) {
+float Test::calculateMedian(vector<float > grades) {
     //Odd student size case
     if (grades.size()%2 == 1){
       return grades[(1+grades.size())/2-1];
@@ -137,7 +132,7 @@ float Assignment::calculateMedian(vector<float > grades) {
     }
 }
 //assuming grade array will be in order for mode calculation
-float Assignment::calculateMode(vector<float > grades) {
+float Test::calculateMode(vector<float > grades) {
     int mode = 1;
     int currentMode = 0;
     float possibleMode = grades[0];
@@ -155,17 +150,17 @@ float Assignment::calculateMode(vector<float > grades) {
     }
     return possibleMode;
 }
-float Assignment::getHigh() {//I dont think this->high works, pretty sure you have to do grades->high ? -mike
+float Test::getHigh() {//I dont think this->high works, pretty sure you have to do grades->high ? -mike
     
     return this->high;
 }
-float Assignment::getLow() {
+float Test::getLow() {
     
     return this->low;
 }
-float Assignment::getMean() {
+float Test::getMean() {
     
     return this->mean;
 }
-//write all methods before this
+
 #endif
