@@ -14,7 +14,6 @@ class Test {
 		string name;
 		string assignment_name;
 		float test_grade;
-		ifstream sourceCode;
 		int correct_answers;
 
 		vector<string> student_answers;//where we will store new test answers
@@ -24,6 +23,7 @@ class Test {
 
 		vector<bool> correctness;//to make grading easier
 	public: 
+		Test();
 		Test(string temp_name);
 
 		void set_name(string student_name);
@@ -34,25 +34,33 @@ class Test {
 		float FitB_grader(vector<string> fill_in_the_blank);
 
 		void omitQuestion(vector<string> student_answers, int deletedIndex);
-	
+
 		//accessors
 		vector* get_vector();
-			
 };
+
+Test::Test() {
+	name = "";
+	assignment_name = "";
+	test_grade = 0.0;
+}
 
 Test::Test(string temp_name) {
 	name = "";
-	assignment_name = name;
+	assignment_name = temp_name;
 	test_grade = 0.0;
 }
-vector* Test::get_vector(){
+
+void Test::get_vector() {
 	return *student_answers;
 }
+
 void Test::set_name(string student_name) {
 	name = student_name;
 }
 
 void Test::answer_input(string filename) {
+	ifstream sourceCode;
 	sourceCode.open(filename);
 
 	//below is for failing to find a file of the input name
@@ -74,7 +82,7 @@ void Test::answer_input(string filename) {
 	}
 }
 
-float Test::grader(vector<string> &student_answers) {
+float Test::grader(vector<string> student_answers) {
 	int key_size = key.size();//make the size a constant to reduce complexity
 	for (int i = 0; i < key_size ; i++) {
 		if (student_answers[i] == key[i]) {
@@ -100,32 +108,6 @@ float Test::grader(vector<string> &student_answers) {
 	test_grade = correct_answers / size;
 	return test_grade;
 }
-
-/*float Assignment::FitB_grader(vector<string> student_answers) {
-	int key_size = FitB_key.size();
-	for (int i = 0; i < key_size ; i++) {
-		if (student_answers[i] == FitB_key[i]) {
-			cout << "the answer is correct" << endl;
-
-			correctness[i] = true;
-		} else {
-			cout << "the answer is incorrect" << endl;
-
-			correctness[i] = false;
-		}
-	}
-
-	correct_answers = 0;
-
-	for (vector<bool> iter = correctness.begin() ; iter < correctness.end() ; iter++) {
-		if (correctness[i]) {//if the answer is correct
-			correct_answers++;
-		}
-	}
-
-	test_grade = correct_answers / correctness.size();
-	return test_grade;
-}*/
 
 void Test::omitQuestion(vector<string> student_answers, int deletedIndex) {
 	student_answers.erase(student_answers.begin() + deletedIndex);
