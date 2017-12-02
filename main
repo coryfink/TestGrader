@@ -24,7 +24,7 @@ int main () {
 		Test key = new Test("");
 		Test student_test = new Test("");
 		while(input != "exit") {
-			cout << "\tEnter a number for what you would like to do:\n\t1. Enter Key\n\t2. Enter Test\n\t4. Calculate Statistics\n\t5. Omit a Question\n\t6. Add a Curve\n\t7. Print Grades and Statistics\n\texit\n\n\t";
+			cout << "\tEnter a number for what you would like to do:\n\t1. Enter Key\n\t2. Enter Test\n\t3. Calculate Statistics\n\t4. Omit a Question\n\t5. Add a Curve\n\t6. Print Grades and Statistics\n\texit\n\n\t";
 
 			cin >> input;
 
@@ -62,7 +62,7 @@ int main () {
 					temp_assignment.set_vector_index(student_test.grader(student_test.get_vector);
 				break;
 
-				case 4: //calculator
+				case 3: //calculator
 					key.organizeGrades();
 					key.calculateHigh();
 					key.calculateLow();
@@ -72,7 +72,7 @@ int main () {
 					key.printStatistics();
 				break;
 
-				case 5: //omitter
+				case 4: //omitter
 					cout << "omitter works\n";
 					int deletedIndex;
 					cout<<"Please enter the question number that you would like to have omitted\n";
@@ -88,14 +88,14 @@ int main () {
 					//send the tests back through the grader code above
 				break;
 
-				case 6: //curver
+				case 5: //curver
 					cout << "curver works\n";
 					//ask for what you want the median/mean/percentiles you want the test to
 					//be at. Then add points to all the tests (every indices in the array)
 					//accordingly
 				break;
 
-				case 7: //printer
+				case 6: //printer
 					cout << "printer works\n";
 					//call all the .print methods for the class functions or just cout with pointers
 					//and arrays
