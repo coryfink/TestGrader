@@ -32,7 +32,7 @@ class Assignment {
 		float calculateMedian(vector<float> grades);
 		//void organizeGrades(vector<float> &grades);
 		float calculateCurve();
-  
+  		void Assignment::printStatistics(vector<float> grades)
 		//Accessor methods
 		float getHigh();
 		float getLow();
@@ -76,6 +76,10 @@ float Assignment::calculateMean(vector<float> grades) {
 	}
 	return sum / grades.size();
 }
+
+void Assignment::printStatistics(vector<float> grades){
+    cout<<"| Mean: "<< grades.getMean() <<" | High: "<< grades.getHigh() << " | Low: "<< grades.getLow() <<endl;
+}   
 
 float Assignment::calculateCurve(vector<float> grades) {
 //not finished yet, trying to figure out how to return the "curved" grades vector
@@ -126,6 +130,7 @@ float Assignment::calculateMode(vector<float> grades) {
 	return possibleMode;
 }
 
+//Accessor methods for the Mean/High/Low elements of the assignment class
 float Assignment::getHigh() {
 	return high;
 }
