@@ -62,16 +62,8 @@ int main () {
 					temp_assignment.set_vector_index(student_test.grader(student_test.get_vector);
 				break;
 
-				case 3: //grader
-
-					//go through the array of tests, pull the values from the test object (the
-					//lines from the test file) and check each answer
-					//send the overall grade to a new array, would also need a binary way to
-					//say whether a specific answer is right or wrong
-				break;
-
 				case 4: //calculator
-					cout << "calculator works\n";
+					
 					//add up the values of the int array of grades and find a high, mean, low,
 					//median, percentiles, etc.
 				break;
