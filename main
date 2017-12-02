@@ -39,10 +39,14 @@ int main () {
 			break;
 
 			case 2: //enter tests
-				cout << "test enterer works\n";
-				//enter the name of the test files
-				//add the new test file to an array of all of the tests
-				//send the values of each line of a test file to an array of chars
+				string student_name;
+				string student_file_name;
+				cout<<"Please enter the student's name\n";
+				cin<<student_name;
+				Test student_test = new Test(student_name);
+				cout<<"Please input your student answer file name.\n";
+				cin<<student_file_name;
+				student_test.answer_input(student_file_name);
 			break;
 
 			case 3: //grader
