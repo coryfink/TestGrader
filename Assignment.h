@@ -55,11 +55,11 @@ Assignment::Assignment(string temp_name) {
 }
 
 void Assignment::set_vector_index(float numerical_grade) {
-
+	grades.push_back(numerical grade);
 }
 
 void Assignment::set_name(string name) {
-
+	assignmentName = name;
 }
 
 void Assignment::add_test(Test temp) {
