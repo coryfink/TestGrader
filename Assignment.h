@@ -5,6 +5,7 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
+#include <algorithm>
 #include "test.h"
 
 using namespace std;
@@ -30,9 +31,9 @@ class Assignment {
 		float calculateMean(vector<float> grades);
 		float calculateMode(vector<float> grades);
 		float calculateMedian(vector<float> grades);
-		//void organizeGrades(vector<float> &grades);
+		void organizeGrades(vector<float> grades);
 		float calculateCurve();
-  		void Assignment::printStatistics(vector<float> grades)
+  		void printStatistics()
 		//Accessor methods
 		float getHigh();
 		float getLow();
@@ -77,8 +78,8 @@ float Assignment::calculateMean(vector<float> grades) {
 	return sum / grades.size();
 }
 
-void Assignment::printStatistics(vector<float> grades){
-    cout<<"| Mean: "<< grades.getMean() <<" | High: "<< grades.getHigh() << " | Low: "<< grades.getLow() <<endl;
+void Assignment::printStatistics(){
+    cout<<"| Mean: "<< getMean() <<" | High: "<< getHigh() << " | Low: "<< getLow() <<endl;
 }   
 
 float Assignment::calculateCurve(vector<float> grades) {
@@ -100,10 +101,11 @@ float Assignment::calculateCurve(vector<float> grades) {
 	}
 }
 
-//I think .size will give us a bit value of the actual size of the array, not
-//the amt of elements, we may need to use *sizeof(grades)/sizeof(grades[0])*
-//maybe .capacity() is what we are looking for? need to test -mike
+void Assignment::organizeGrades(vector<float> grades){
+	sort(grades.begin(), grades.end());
+}
 float Assignment::calculateMedian(vector<float> grades) {
+	organizeGrades(grades);
 	//Odd student size case
 	if (grades.size()%2 == 1) {
 		return grades[(1+grades.size())/2-1];
@@ -112,8 +114,9 @@ float Assignment::calculateMedian(vector<float> grades) {
 	}
 }
 
-//assuming grade array will be in order for mode calculation
+//Method to calculate the Mode from the grades
 float Assignment::calculateMode(vector<float> grades) {
+	organizeGrades(grades);
 	int mode = 1;
 	int currentMode = 0;
 	float possibleMode = grades[0];
@@ -130,7 +133,7 @@ float Assignment::calculateMode(vector<float> grades) {
 	return possibleMode;
 }
 
-//Accessor methods for the Mean/High/Low elements of the assignment class
+//Accessor methods for the Mean/High/Low grade elements of the assignment class
 float Assignment::getHigh() {
 	return high;
 }
