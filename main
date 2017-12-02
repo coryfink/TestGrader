@@ -89,10 +89,7 @@ int main () {
 				break;
 
 				case 5: //curver
-					cout << "curver works\n";
-					//ask for what you want the median/mean/percentiles you want the test to
-					//be at. Then add points to all the tests (every indices in the array)
-					//accordingly
+					temp_assignment.calculateCurve();
 				break;
 
 				case 6: //printer
