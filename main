@@ -27,9 +27,15 @@ int main () {
 
 		switch ( choice ) {
 			case 1: //key
-				cout << "key works\n";
-				//ask for number of questions, assignment name, and send the data in the
-				//file they choose to the key method/variable in the assignment class
+				string temp_name;
+				string temp_file_name;
+				cout<<Please enter a name for your assignment.\n";
+				cin<<temp_name;
+				Assignment temp_assignment = new Assignment(temp_name);
+				Test key = new Test(temp_name);
+				cout<<"Please input your test key file name.\n";
+				cin<<temp_file_name;
+				key.answer_input(temp_file_name);
 			break;
 
 			case 2: //enter tests
