@@ -9,88 +9,103 @@
 using namespace std;
 
 int main () {
-	string input;
-	int choice;
-
-	while(input != "exit") {
-		cout << "\tEnter a number for what you would like to do:\n\t1. Enter Key\n\t2. Enter Test\n\t3. Grade Current Tests\n\t4. Calculate Statistics\n\t5. Omit a Question\n\t6. Add a Curve\n\t7. Print Grades and Statistics\n\texit\n\n\t";
-
-		cin >> input;
-
-
-		if (input == "exit") {
-			break; //should break the loops if input is exit, otherwise continues to the switch case
-		} else {
-			choice = atoi(input.c_str());
+	string answer;
+	while(answer != "no"){
+		if(answer == "new"){
+			cout<<"Would you like to grade a new assignment? (yes/no)\n";
+			cin<<answer;
+			if(answer == "no"){
+				break;
+			}
 		}
+		string input;
+		int choice;
+		Assignment temp_assignment = new Assignment("");
+		Test key = new Test("");
+		Test student_test = new Test("");
+		while(input != "exit") {
+			cout << "\tEnter a number for what you would like to do:\n\t1. Enter Key\n\t2. Enter Test\n\t4. Calculate Statistics\n\t5. Omit a Question\n\t6. Add a Curve\n\t7. Print Grades and Statistics\n\texit\n\n\t";
+
+			cin >> input;
 
 
-		switch ( choice ) {
-			case 1: //key
-				string temp_name;
-				string temp_file_name;
-				cout<<Please enter a name for your assignment.\n";
-				cin<<temp_name;
-				Assignment temp_assignment = new Assignment(temp_name);
-				Test key = new Test(temp_name);
-				cout<<"Please input your test key file name.\n";
-				cin<<temp_file_name;
-				key.answer_input(temp_file_name);
-			break;
+			if (input == "exit") {
+				break; //should break the loops if input is exit, otherwise continues to the switch case
+			} else {
+				choice = atoi(input.c_str());
+			}
+		
 
-			case 2: //enter tests
-				string student_name;
-				string student_file_name;
-				cout<<"Please enter the student's name\n";
-				cin<<student_name;
-				Test student_test = new Test(student_name);
-				cout<<"Please input your student answer file name.\n";
-				cin<<student_file_name;
-				student_test.answer_input(student_file_name);
-			break;
+			switch ( choice ) {
+				case 1: //key
+					string temp_name;
+					string temp_file_name;
+					cout<<Please enter a name for your assignment.\n";
+					cin<<temp_name;
+					temp_assignment.set_name = temp_name;
+					key.set_name = temp_name;
+					cout<<"Please input your test key file name.\n";
+					cin<<temp_file_name;
+					key.answer_input(temp_file_name);
+				break;
 
-			case 3: //grader
-				cout << "grader works\n";
-				//go through the array of tests, pull the values from the test object (the
-				//lines from the test file) and check each answer
-				//send the overall grade to a new array, would also need a binary way to
-				//say whether a specific answer is right or wrong
-			break;
+				case 2: //enter tests
+					string student_name;
+					string student_file_name;
+					cout<<"Please enter the student's name\n";
+					cin<<student_name;
+					Test student_test = new Test(student_name);
+					cout<<"Please input your student answer file name.\n";
+					cin<<student_file_name;
+					student_test.answer_input(student_file_name);
+					//begin grading student test, add mutator to assignment vector
+					temp_assignment.set_vector_index(student_test.grader(student_test.get_vector);
+				break;
 
-			case 4: //calculator
-				cout << "calculator works\n";
-				//add up the values of the int array of grades and find a high, mean, low,
-				//median, percentiles, etc.
-			break;
+				case 3: //grader
 
-			case 5: //omitter
-				cout << "omitter works\n";
-				int deletedIndex;
-				cout<<"Please enter the question number that you would like to have omitted\n";
-				cin<<deletedIndex;
-				if(deletedIndex > 0){
-					omitQuestion(student_answers, deletedIndex);
-				}
-				else{
-					cout<<"That question number is invalid\n";
-				}
-				//this should be able to ignore a specific questions weight on a grade,
-				//ideally not by just deleting the index at that point on the key/tests, then
-				//send the tests back through the grader code above
-			break;
+					//go through the array of tests, pull the values from the test object (the
+					//lines from the test file) and check each answer
+					//send the overall grade to a new array, would also need a binary way to
+					//say whether a specific answer is right or wrong
+				break;
 
-			case 6: //curver
-				cout << "curver works\n";
-				//ask for what you want the median/mean/percentiles you want the test to
-				//be at. Then add points to all the tests (every indices in the array)
-				//accordingly
-			break;
+				case 4: //calculator
+					cout << "calculator works\n";
+					//add up the values of the int array of grades and find a high, mean, low,
+					//median, percentiles, etc.
+				break;
 
-			case 7: //printer
-				cout << "printer works\n";
-				//call all the .print methods for the class functions or just cout with pointers
-				//and arrays
-			break;
+				case 5: //omitter
+					cout << "omitter works\n";
+					int deletedIndex;
+					cout<<"Please enter the question number that you would like to have omitted\n";
+					cin<<deletedIndex;
+					if(deletedIndex > 0){
+						omitQuestion(student_answers, deletedIndex);
+					}
+					else{
+						cout<<"That question number is invalid\n";
+					}
+					//this should be able to ignore a specific questions weight on a grade,
+					//ideally not by just deleting the index at that point on the key/tests, then
+					//send the tests back through the grader code above
+				break;
+
+				case 6: //curver
+					cout << "curver works\n";
+					//ask for what you want the median/mean/percentiles you want the test to
+					//be at. Then add points to all the tests (every indices in the array)
+					//accordingly
+				break;
+
+				case 7: //printer
+					cout << "printer works\n";
+					//call all the .print methods for the class functions or just cout with pointers
+					//and arrays
+				break;
+			}
 		}
 	}
+	answers = "new";
 }
