@@ -63,13 +63,13 @@ int main () {
 				break;
 
 				case 3: //calculator
-					key.organizeGrades();
-					key.calculateHigh();
-					key.calculateLow();
-					key.calculateMean();
-					key.calculateMode();
-					key.calculateMedian();
-					key.printStatistics();
+					temp_assignment.organizeGrades();
+					temp_assignment.calculateHigh();
+					temp_assignment.calculateLow();
+					temp_assignment.calculateMean();
+					temp_assignment.calculateMode();
+					temp_assignment.calculateMedian();
+					temp_assignment.printStatistics();
 				break;
 
 				case 4: //omitter
