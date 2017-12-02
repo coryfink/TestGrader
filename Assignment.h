@@ -23,6 +23,7 @@ class Assignment {
 		float low;
 		float mean;
 		float curve;
+		float numerical grade
 
 	Public:
 //pass in vector containing grades to calculate stats
@@ -42,13 +43,17 @@ class Assignment {
 		float getHigh();
 		float getLow();
 		float getMean();
+	
+		//mutator methods
+		void set_vector_index;
+		void set_name;
 };
 
 Assignment::Assignment(string temp_name) {
 	assignmentName = temp_name;
 	new vector<Test> assignmentName = classTests;
 }
-
+void Assignment::set_vector_index(int numerical_grade);
 void Assignment::add_test(Test temp) {
 	classTests.push_back(temp);
 }
