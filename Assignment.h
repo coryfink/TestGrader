@@ -101,7 +101,7 @@ float Assignment::calculateCurve(vector<float> grades) {
 //maybe .capacity() is what we are looking for? need to test -mike
 float Assignment::calculateMedian(vector<float> grades) {
 	//Odd student size case
-	if (grades.size()%2 == 1){
+	if (grades.size()%2 == 1) {
 		return grades[(1+grades.size())/2-1];
 	} else {
 		return (grades[grades.size()/2-1] + grades[grades.size()/2])/2;
