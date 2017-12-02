@@ -24,6 +24,7 @@ class Assignment {
 		float low;
 		float mean;
 		float curve;
+		float mode;
 
 	public://Pass in vector containing grades to calculate stats
 		Assignment(string temp_assignment_name);
