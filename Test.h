@@ -37,6 +37,7 @@ class Test {
 
 		//accessors
 		vector* get_vector();
+		string getName();
 };
 
 Test::Test() {
@@ -57,6 +58,9 @@ void Test::get_vector() {
 
 void Test::set_name(string student_name) {
 	name = student_name;
+}
+string Test::getName(){
+	return name;
 }
 
 void Test::answer_input(string filename) {
