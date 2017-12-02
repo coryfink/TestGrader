@@ -79,7 +79,7 @@ void Assignment::calculateHigh() {
 }
 
 //calculates the lowest value in the vector of grades
-Assignment::calculateLow() {
+void Assignment::calculateLow() {
 	float low = 100;
 	int size = grades.size();
 	//for loops that accesses every grade in the vector and compares it to the current low
@@ -101,7 +101,7 @@ void Assignment::calculateMean() {
 }
 
 //adds a curve to the tests
-Assignment::calculateCurve() {
+void Assignment::calculateCurve() {
 //not finished yet, trying to figure out how to return the "curved" grades vector
 	float inputAverage;
 
@@ -121,6 +121,7 @@ Assignment::calculateCurve() {
 	for (int i = 0; i < size; i++) {
 		grades[i] = grades[i] + curve;
 	}
+	cout<<"Please utilize the "Calculate Statistics" option in the user interface to see new assignment statistics accounting for the curve.\n";
 }
 
 //Method to organize the vector that holds all the grades
