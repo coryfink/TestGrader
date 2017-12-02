@@ -48,7 +48,7 @@ void Assignment::add_test(Test temp) {
 	classTests.push_back(temp);
 }
 
-float Assignment::calculateHigh(vector<float> grades) {//need to use vector methods not array methods
+float Assignment::calculateHigh(vector<float> grades) {
 	float high = 0;
 	
 	for (int i = 0; i < grades.size(); i++) {
@@ -59,7 +59,7 @@ float Assignment::calculateHigh(vector<float> grades) {//need to use vector meth
 	return high;
 }
 
-float Assignment::calculateLow(vector<float> grades) {//need to use vector methods not array methods
+float Assignment::calculateLow(vector<float> grades) {
 	float low = 100;
 	for (int i = 0; i < grades.size(); i++) {
 		if (grades[i] < low) {
@@ -69,7 +69,7 @@ float Assignment::calculateLow(vector<float> grades) {//need to use vector metho
 	return low;
 }
 
-float Assignment::calculateMean(vector<float> grades) {//need to use vector methods not array methods
+float Assignment::calculateMean(vector<float> grades) {
 	float sum = 0;
 	for (int i = 0; i < grades.size(); i++) {
 		sum += grades[i];
@@ -92,14 +92,14 @@ float Assignment::calculateCurve(vector<float> grades) {
 		curve = 0;
 	}
 	for (int i = 0; i<grades.size(); i++) {
-		grades[i]=grades[i]+curve; //see mike's grader method, there are vector methods to iterate through and you can use pointers
+		grades[i]=grades[i]+curve;
 	}
 }
 
 //I think .size will give us a bit value of the actual size of the array, not
 //the amt of elements, we may need to use *sizeof(grades)/sizeof(grades[0])*
 //maybe .capacity() is what we are looking for? need to test -mike
-float Assignment::calculateMedian(vector<float> grades) {//need to use vector methods not array methods
+float Assignment::calculateMedian(vector<float> grades) {
 	//Odd student size case
 	if (grades.size()%2 == 1){
 		return grades[(1+grades.size())/2-1];
@@ -109,10 +109,10 @@ float Assignment::calculateMedian(vector<float> grades) {//need to use vector me
 }
 
 //assuming grade array will be in order for mode calculation
-float Assignment::calculateMode(vector<float> grades) {//need to use vector methods not array methods
+float Assignment::calculateMode(vector<float> grades) {
 	int mode = 1;
 	int currentMode = 0;
-	float possibleMode = grades[0];//need to reference a vector not an array
+	float possibleMode = grades[0];
 	
 	for (int i = 1; i < grades.size(); ++i) {
 		if (grades[i] == grades[i-1]){
