@@ -63,9 +63,13 @@ int main () {
 				break;
 
 				case 4: //calculator
-					
-					//add up the values of the int array of grades and find a high, mean, low,
-					//median, percentiles, etc.
+					key.organizeGrades();
+					key.calculateHigh();
+					key.calculateLow();
+					key.calculateMean();
+					key.calculateMode();
+					key.calculateMedian();
+					key.printStatistics();
 				break;
 
 				case 5: //omitter
