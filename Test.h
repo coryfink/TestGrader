@@ -34,6 +34,10 @@ class Test {
 		float FitB_grader(vector<string> fill_in_the_blank);
 
 		void omitQuestion(vector<string> student_answers, int deletedIndex);
+	
+		//accessors
+		vector* get_vector();
+			
 };
 
 Test::Test(string temp_name) {
@@ -41,7 +45,9 @@ Test::Test(string temp_name) {
 	assignment_name = name;
 	test_grade = 0.0;
 }
-
+vector* Test::get_vector(){
+	return *student_answers;
+}
 void Test::set_name(string student_name) {
 	name = student_name;
 }
@@ -68,7 +74,7 @@ void Test::answer_input(string filename) {
 	}
 }
 
-float Test::grader(vector<string> student_answers) {
+float Test::grader(vector<string> &student_answers) {
 	int key_size = key.size();//make the size a constant to reduce complexity
 	for (int i = 0; i < key_size ; i++) {
 		if (student_answers[i] == key[i]) {
