@@ -96,9 +96,38 @@ int main () {
 				break;
 
 				case 6: //printer
-					cout << "printer works\n";
-					//call all the .print methods for the class functions or just cout with pointers
-					//and arrays
+					int choice;
+                            		string input;
+                            		string assignment;
+                            		while(true){
+						cout << "\tAssignment name: " << endl;
+                                		getline(cin, assignment);
+                                		//Giving the user the option to exit back to the menu incase the assignment isn't in the system or hasn't been calculated
+                                		if((assignment.compare("Menu") = 0)){
+                                    			break;
+                                		}
+						//Making sure the assignment exists and statistics have been calculated. Upperbound set to 200 incase scores are curved heavily
+                                		if((assignment != NULL) ){
+                                    			break;
+                                		}
+                                		else{
+                                    			cout << "\tThe assignment was not found or the statistics have not been calculated. Enter 'Menu' if you need to return.\n" << endl;
+                                		}
+					}
+                            		while(input != 4) {
+                                		cout << "\tEnter a number for what you would like to do:\n\t1. Display Statistics (High/Mean/Low)\n\t2. Display all Students and Scores\n\t3. Look up student score by name\n\t 4. Exit";
+                                		cin >> input;                            
+                                		choice = atoi(input.c_str());
+                                		if(input == 4){
+                                    			break;
+                                		}
+                                		switch ( choice ) {
+                                    		case 1: //Statistics
+                                        		assignment.printStatistics();
+                                    		break;
+						case 2:
+                                		}
+                            		}
 				break;
 			}
 		}
