@@ -11,18 +11,21 @@
 using namespace std;
 
 class Assignment {
-	private:
+	Private:
+		//vector assignments
 		string assignmentName;
 		Test temp;
 		vector<Test> classTests;
 		vector<float> grades;
-
+		
+		//float variable assignments
 		float high;
 		float low;
 		float mean;
 		float curve;
 
-	public://Pass in vector containing grades to calculate stats
+	Public:
+//pass in vector containing grades to calculate stats
 		Assignment(string temp_name);
 
 		void add_test(Test temp);
@@ -34,6 +37,7 @@ class Assignment {
 		void organizeGrades(vector<float> grades);
 		float calculateCurve();
   		void printStatistics()
+
 		//Accessor methods
 		float getHigh();
 		float getLow();
@@ -49,9 +53,12 @@ void Assignment::add_test(Test temp) {
 	classTests.push_back(temp);
 }
 
+//method that calculates the highest value in the vector of grades
 float Assignment::calculateHigh(vector<float> grades) {
 	float high = 0;
 	
+	//for loop that accesses each grade in the vector
+	//compares first element to the one preceding it 
 	for (int i = 0; i < grades.size(); i++) {
 		if (grades[i] > high) {
 			high = grades[i];
@@ -60,8 +67,12 @@ float Assignment::calculateHigh(vector<float> grades) {
 	return high;
 }
 
+//method that calculates the lowest value in the vector of grades
 float Assignment::calculateLow(vector<float> grades) {
 	float low = 100;
+
+	//for loop that accesses each grade in the vector
+	//compares first element to the one preceding it
 	for (int i = 0; i < grades.size(); i++) {
 		if (grades[i] < low) {
 			low = grades[i];
@@ -70,30 +81,37 @@ float Assignment::calculateLow(vector<float> grades) {
 	return low;
 }
 
+//method that calculates the mean (average) value of the grades 
 float Assignment::calculateMean(vector<float> grades) {
 	float sum = 0;
-	for (int i = 0; i < grades.size(); i++) {
+	//for loop that accesses each grade in the vector
+	//sums the values of every grade in the vector and divides by total # of grades
+for (int i = 0; i < grades.size(); i++) {
 		sum += grades[i];
 	}
 	return sum / grades.size();
 }
 
+//printing method that displays the grade statistics 
 void Assignment::printStatistics(){
     cout<<"| Mean: "<< getMean() <<" | High: "<< getHigh() << " | Low: "<< getLow() <<endl;
 }   
 
+//method that adds a curve to each grade in the vector
+//takes in the original vector of grades
 float Assignment::calculateCurve(vector<float> grades) {
-//not finished yet, trying to figure out how to return the "curved" grades vector
+//
 	float inputAverage;
 
 	cout << "Please enter the desired average for this exam." << endl;
 	cin >> inputAverage;
 	
-	float realAverage = grades.calculateMean(); //**calculateMean(grades)
+	float realAverage = calculateMean(grades);
 	
 	if (realAverage < inputAverage) {
 		curve = inputAverage - realAverage;
-	} else {
+	}
+ else {
 		curve = 0;
 	}
 	for (int i = 0; i<grades.size(); i++) {
@@ -101,33 +119,44 @@ float Assignment::calculateCurve(vector<float> grades) {
 	}
 }
 
+//Method to organize the vector that holds all the grades
 void Assignment::organizeGrades(vector<float> grades){
-	sort(grades.begin(), grades.end());
+	sort(grades.begin(), grades.end());//using sort function for vectors (algorithm header)
 }
+
+//Method to calculate the Median of the grades
 float Assignment::calculateMedian(vector<float> grades) {
-	organizeGrades(grades);
-	//Odd student size case
+	//Organizing the scores
+organizeGrades(grades);
+	
+//Odd student size case: returning the middle grade in the vector
 	if (grades.size()%2 == 1) {
 		return grades[(1+grades.size())/2-1];
-	} else {
+	
+	//Even student size case: returning the average value between the two middle grades
+} else {
 		return (grades[grades.size()/2-1] + grades[grades.size()/2])/2;
 	}
 }
 
-//Method to calculate the Mode from the grades
+//Method to calculate the Mode of the grades
 float Assignment::calculateMode(vector<float> grades) {
-	organizeGrades(grades);
-	int mode = 1;
-	int currentMode = 0;
+	//Organizing the scores and setting the initial mode to 1
+organizeGrades(grades);
+	int overallMode = 1;
+	int currentMode = 1;
 	float possibleMode = grades[0];
 	
-	for (int i = 1; i < grades.size(); ++i) {
+	//Looping through the grades and counting recurring grades
+for (int i = 1; i < grades.size(); ++i) {
 		if (grades[i] == grades[i-1]){
 			currentMode++;
-		} else if (currentMode > mode) {
+		}
+		//Setting the possible mode once the current mode surpasses the overall mode
+ else if (currentMode > overallMode) {
 			possibleMode = grades[i-1];
-			mode = currentMode;
-			currentMode = 0;
+			overallMode = currentMode;
+			currentMode = 1;
 		}
 	}
 	return possibleMode;
@@ -147,3 +176,4 @@ float Assignment::getMean() {
 }
 
 #endif
+
