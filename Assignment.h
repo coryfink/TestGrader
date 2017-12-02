@@ -30,12 +30,12 @@ class Assignment {
 		Assignment(string temp_name);
 
 		void add_test(Test temp);
-		void calculateHigh(vector<float> grades);
-		void calculateLow(vector<float> grades);
-		void calculateMean(vector<float> grades);
-		void calculateMode(vector<float> grades);
-		void calculateMedian(vector<float> grades);
-		void organizeGrades(vector<float> grades);
+		void calculateHigh();
+		void calculateLow();
+		void calculateMean();
+		void calculateMode();
+		void calculateMedian();
+		void organizeGrades();
 		float calculateCurve(vector<float> grades);
 		void printStatistics();
   
@@ -67,7 +67,7 @@ void Assignment::add_test(Test temp) {
 }
 
 //method that calculates the highest value in the vector of grades
-void Assignment::calculateHigh(vector<float> grades) {
+void Assignment::calculateHigh() {
 	float high = 0;
 	int size = grades.size();
 	//for loops that accesses each grade in the vector and compares it to the current high
@@ -79,7 +79,7 @@ void Assignment::calculateHigh(vector<float> grades) {
 }
 
 //calculates the lowest value in the vector of grades
-void Assignment::calculateLow(vector<float> grades) {
+void Assignment::calculateLow() {
 	float low = 100;
 	int size = grades.size();
 	//for loops that accesses every grade in the vector and compares it to the current low
@@ -91,7 +91,7 @@ void Assignment::calculateLow(vector<float> grades) {
 }
 
 //calculates te average
-void Assignment::calculateMean(vector<float> grades) {
+void Assignment::calculateMean() {
 	float sum = 0;
 	int size = grades.size();
 	for (int i = 0; i < size; i++) {
@@ -126,14 +126,14 @@ float Assignment::calculateCurve(vector<float> grades) {
 }
 
 //Method to organize the vector that holds all the grades
-void Assignment::organizeGrades(vector<float> grades){
+void Assignment::organizeGrades(){
 	sort(grades.begin(), grades.end());//using sort function for vectors (algorithm header)
 }
 
 //I think .size will give us a bit value of the actual size of the array, not
 //the amt of elements, we may need to use *sizeof(grades)/sizeof(grades[0])*
 //maybe .capacity() is what we are looking for? need to test -mike
-void Assignment::calculateMedian(vector<float> grades) {
+void Assignment::calculateMedian() {
 	//Odd student size case
 	int size = grades.size();
 	if (size % 2 == 1) {
@@ -144,7 +144,7 @@ void Assignment::calculateMedian(vector<float> grades) {
 }
 
 //assuming grade array will be in order for mode calculation
-void Assignment::calculateMode(vector<float> grades) {
+void Assignment::calculateMode() {
 	int mode = 1;
 	int currentMode = 0;
 	float possibleMode = grades[0];
