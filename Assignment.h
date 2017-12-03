@@ -38,11 +38,13 @@ class Assignment {
 		void organizeGrades();
 	 	void calculateCurve();
 		void printStatistics();
-  
+  		void displayAll();
 		//Accessor methods
 		float getHigh();
 		float getLow();
 		float getMean();
+		void getGrades();
+		void getTest();
 
 		//mutator methods
 		void set_vector_index(float numerical_grade);
@@ -171,6 +173,14 @@ void Assignment::printStatistics(){
     cout<<"| Mean: "<< getMean() <<" | High: "<< getHigh() << " | Low: "<< getLow() <<endl;
 }
 
+//printing method that displays all student names and scores
+void Assignment::displayAll(){
+    vector <string> names = getTest().getName();
+    for(it = getGrades.begin(); itt = names.begin();  it != getGrades.end(); itt = names.end(); it++,itt++ ){
+        cout<< "\t" << *itt << "\t|\t" << *it << endl;
+    }
+}
+
 //accessor methods for grade statistics
 float Assignment::getHigh() {
 	return high;
@@ -182,6 +192,13 @@ float Assignment::getLow() {
 
 float Assignment::getMean() {
 	return mean;
+}
+void Assignment::getGrades() {
+	return *grades;
+}
+
+void Assignment::getTest() {
+	return *classTests;
 }
 
 #endif
