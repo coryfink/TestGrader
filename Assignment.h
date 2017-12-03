@@ -183,8 +183,10 @@ void Assignment::displayAll() {
 }
 
 void Assignment::omitQuestion(int deletedIndex) {
-	for (vector<Test> i = classTests.begin(); i != classTests.end(); i++) {
-		(classTests[i].get_vector()).erase(deletedIndex -1);
+	int size = classTests.size();
+	for (int i = 0; i < size; i++) {
+		Test* ptr = classTests[i];
+		(ptr->get_vector())->erase(deletedIndex - 1);
 	}
 }
 
