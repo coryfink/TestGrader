@@ -178,7 +178,7 @@ void Assignment::displayAll() {
 
 void Assignment::omitQuestion(int deletedIndex) {
 	for (vector<Test> i = classTests.begin(); i != classTests.end(); i++) {
-		(classTests[i]->student_answers).erase(deletedIndex -1);
+		(classTests[i].get_vector()).erase(deletedIndex -1);
 	}
 }
 
