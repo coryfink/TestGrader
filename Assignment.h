@@ -178,11 +178,7 @@ void Assignment::displayAll() {
 
 void Assignment::omitQuestion(int deletedIndex) {
 	for (vector<Test> i = classTests.begin(); i != classTests.end(); i++) {
-		if (classTests[i] != NULL) {
-			(classTests[i]->student_answers).erase(deletedIndex -1);
-		} else {
-			cout << "\n\tThe index is not valid.\n";
-		}
+		(classTests[i]->student_answers).erase(deletedIndex -1);
 	}
 }
 
