@@ -65,7 +65,7 @@ int main () {
 					cin>>student_file_name;
 					student_test.answer_input(student_file_name);
 					//begin grading student test, add mutator to assignment vector
-					temp_assignment.set_vector_index(student_test.grader(student_test.get_vector());
+					temp_assignment.set_vector_index(student_test.grader(*student_test.get_vector()));
 					}
 
 				break;
