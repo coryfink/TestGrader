@@ -1,4 +1,9 @@
-//test.h
+/*
+ * Test.h
+ *
+ *  Created on: Dec 3, 2017
+ *      Author: zanez
+ */
 #ifndef _TEST_H_
 #define _TEST_H_
 
@@ -40,6 +45,8 @@ class Test {
 		string getName();
 
 		vector<string> * get_vector();
+
+		void printAnswers();
 };
 
 Test::Test() {
@@ -94,7 +101,7 @@ float Test::grader(vector<string> student_answers) {
 			correctness[i] = false;
 		}
 	}
-	
+
 	correct_answers = 0;
 	int size = correctness.size();
 
@@ -108,8 +115,17 @@ float Test::grader(vector<string> student_answers) {
 	return test_grade;
 }
 
+void Test::printAnswers()
+{
+	for(vector<string>::iterator sa_iter=student_answers.begin();sa_iter!=student_answers.end();sa_iter++)
+	{
+		cout<<"Answer: "<<*sa_iter<<endl;
+	}
+}
+
 vector<string> * Test::get_vector() {
 	vector<string> * pointer = &student_answers;
 	return pointer;
 }
 #endif
+
