@@ -31,9 +31,12 @@ class Test {
 		void answer_input(string filename);
 
 		float grader(vector<string> student_answers);
-		//accessor methods
-		vector<string>* get_vector();
+
+		void omitQuestion(vector<string> student_answers, int deletedIndex);
+
 		string getName();
+
+		vector<string> * get_vector();
 };
 
 Test::Test() {
@@ -51,10 +54,7 @@ Test::Test(string temp_name) {
 void Test::set_name(string student_name) {
 	name = student_name;
 }
-vector<string>* Test::get_vector(){
-	vector<string> * pointer = &student_answers;
-	return pointer;
-}	
+
 void Test::answer_input(string filename) {
 	ifstream sourceCode;
 	sourceCode.open(filename);
@@ -103,5 +103,10 @@ float Test::grader(vector<string> student_answers) {
 
 	test_grade = correct_answers / size;
 	return test_grade;
+}
+
+vector<string> * Test::get_vector() {
+	vector<string> * pointer = &student_answers;
+	return pointer;
 }
 #endif
