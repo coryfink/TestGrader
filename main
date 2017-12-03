@@ -96,6 +96,7 @@ int main () {
 					int choice;
                             		string input;
                             		string assignment;
+					string inputName;
                             		while(true){
 						cout << "\tAssignment name: " << endl;
                                 		getline(cin, assignment);
@@ -122,8 +123,10 @@ int main () {
                                     		case 1: //Statistics
                                         		assignment.printStatistics();
                                     		break;
-						case 2:
+						case 2: //DisplayAll
+							assignment.displayAll();
                                 		}
+						case 3: //Score by Name
                             		}
 				break;
 			}
