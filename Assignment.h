@@ -7,7 +7,7 @@
 #include <iostream>
 #include <fstream>
 #include <algorithm>
-#include "test.h"
+#include "Test.h"
 
 using namespace std;
 
@@ -40,7 +40,7 @@ class Assignment {
 	 	void calculateCurve();
 		void printStatistics();
 		//void displayAll();
-		void omitQuestion(int deletedIndex);
+		//void omitQuestion(int deletedIndex);
   
 		//Accessor methods
 		float getHigh();
@@ -175,13 +175,17 @@ void Assignment::printStatistics(){
 		cout<< "\t" << *itt << "\t|\t" << *it << endl;
 	}
 }*/
-
+/*
 void Assignment::omitQuestion(int deletedIndex) {
-	for (vector<Test>::iterator iter = classTests.begin(); iter != classTests.end(); ++iter) {
-		(*iter->get_vector()).erase(deletedIndex - 1);
-	}
-}
+	auto iter = classTests.begin();
 
+	while (deletedIndex--) {
+		iter++;
+	}
+
+	((*iter)->student_answers).erase(iter);
+}
+*/
 //accessor methods for grade statistics
 float Assignment::getHigh() {
 	return high;
