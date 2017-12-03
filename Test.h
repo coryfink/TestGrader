@@ -65,6 +65,11 @@ void Test::set_name(string student_name) {
 	name = student_name;
 }
 
+string Test::getName()
+{
+	return name;
+}
+
 void Test::answer_input(string filename) {
 	ifstream sourceCode;
 	sourceCode.open(filename);
