@@ -33,8 +33,6 @@ class Test {
 		float grader(vector<string> student_answers);
 		float FitB_grader(vector<string> fill_in_the_blank);
 
-		void omitQuestion(vector<string> student_answers, int deletedIndex);
-
 		//accessors
 		vector* get_vector();
 		string getName();
@@ -113,7 +111,4 @@ float Test::grader(vector<string> student_answers) {
 	return test_grade;
 }
 
-void Test::omitQuestion(vector<string> student_answers, int deletedIndex) {
-	student_answers.erase(student_answers.begin() + deletedIndex);
-}
 #endif
