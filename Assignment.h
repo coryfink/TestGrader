@@ -39,6 +39,7 @@ class Assignment {
 	 	void calculateCurve();
 		void printStatistics();
   		void displayAll();
+		void omitQuestion(int deletedIndex);
 		//Accessor methods
 		float getHigh();
 		float getLow();
@@ -180,7 +181,13 @@ void Assignment::displayAll(){
         cout<< "\t" << *itt << "\t|\t" << *it << endl;
     }
 }
-
+void Assignment::omitQuestion(int deletedIndex) {
+	for(int i = 0; i<classTests.size(); i++){
+		if(classTests[i] != NULL){
+			(classTests[i].get_vector()).erase(deletedIndex - 1);
+		}
+	}
+}
 //accessor methods for grade statistics
 float Assignment::getHigh() {
 	return high;
