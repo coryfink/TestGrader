@@ -38,7 +38,6 @@ class Test {
 		//accessors
 		vector* get_vector();
 		string getName();
-		vector* getName();
 };
 
 Test::Test() {
@@ -55,9 +54,6 @@ Test::Test(string temp_name) {
 
 void Test::get_vector() {
 	return *student_answers;
-}
-vector* Test::getName() {
-	return *name;
 }
 
 void Test::set_name(string student_name) {
