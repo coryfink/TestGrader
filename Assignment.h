@@ -43,8 +43,8 @@ class Assignment {
 		float getHigh();
 		float getLow();
 		float getMean();
-		void getGrades();
-		void getTest();
+		vector* getGrades();
+		vector* getTest();
 
 		//mutator methods
 		void set_vector_index(float numerical_grade);
@@ -193,11 +193,11 @@ float Assignment::getLow() {
 float Assignment::getMean() {
 	return mean;
 }
-void Assignment::getGrades() {
+vector* Assignment::getGrades() {
 	return *grades;
 }
 
-void Assignment::getTest() {
+vector* Assignment::getTest() {
 	return *classTests;
 }
 
