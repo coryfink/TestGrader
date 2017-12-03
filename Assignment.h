@@ -133,37 +133,43 @@ void Assignment::organizeGrades(){
 	sort(grades.begin(), grades.end());//using sort function for vectors (algorithm header)
 }
 
-//I think .size will give us a bit value of the actual size of the array, not
-//the amt of elements, we may need to use *sizeof(grades)/sizeof(grades[0])*
-//maybe .capacity() is what we are looking for? need to test -mike
-void Assignment::calculateMedian() {
-	//Odd student size case
-	int size = grades.size();
-	if (size % 2 == 1) {
-		median = grades[( 1 + size) / 2 - 1];
-	} else {
-		median = (grades[size / 2 - 1] + grades[size / 2 ]) / 2;
+//Method to calculate the Median of the grades
+float Assignment::calculateMedian(vector<float> grades) {
+	//Organizing the scores
+        organizeGrades(grades);
+	
+        //Odd student size case: returning the middle grade in the vector
+	if (grades.size()%2 == 1) {
+            return grades[(1+grades.size())/2-1];
+	}
+	//Even student size case: returning the average value between the two middle grades
+        else {
+            return (grades[grades.size()/2-1] + grades[grades.size()/2])/2;
 	}
 }
 
-//assuming grade array will be in order for mode calculation
-void Assignment::calculateMode() {
-	int mode = 1;
-	int currentMode = 0;
+//Method to calculate the Mode of the grades
+float Assignment::calculateMode(vector<float> grades) {
+	//Organizing the scores and setting the initial mode to 1
+        organizeGrades(grades);
+	int overallMode = 1;
+	int currentMode = 1;
 	float possibleMode = grades[0];
-	int size = grades.size();	
-	for (int i = 1; i < size; i++) {//loops through grades and counts recurring grades
-		if (grades[i] == grades[i - 1]){
-			currentMode++;
-		} else if (currentMode > mode) {//sets the possible mode once it is greater than the current
-			possibleMode = grades[i - 1];
-			mode = currentMode;
-			currentMode = 0;
+	
+	//Looping through the grades and counting recurring grades
+        for (int i = 1; i < grades.size(); ++i) {
+            if (grades[i] == grades[i-1]){
+		currentMode++;
+		}
+		//Setting the possible mode once the current mode surpasses the overall mode
+                else if (currentMode > overallMode) {
+                    possibleMode = grades[i-1];
+                    overallMode = currentMode;
+                    currentMode = 1;
 		}
 	}
-	mode = possibleMode;
+	return possibleMode;
 }
-
 //printing method that displays the grade statistics 
 void Assignment::printStatistics(){
     cout<<"| Mean: "<< mean <<" | High: "<< high << " | Low: "<< low <<endl;
@@ -171,7 +177,7 @@ void Assignment::printStatistics(){
 
 void Assignment::displayAll() {
 	vector <string> names = getTest().getName();
-	for(it = getGrades.begin(); itt = names.begin();  it != getGrades.end(); itt = names.end(); it++,itt++ ) {
+	for(it = getGrades().begin(); itt = names.begin();  it != getGrades().end(); itt = names.end(); it++,itt++ ) {
 		cout<< "\t" << *itt << "\t|\t" << *it << endl;
 	}
 }
