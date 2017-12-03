@@ -169,6 +169,15 @@ void Assignment::printStatistics(){
     cout<<"| Mean: "<< mean <<" | High: "<< high << " | Low: "<< low <<endl;
 }
 
+void Assignment::printGrades()
+{
+	int size=classTests.size();
+	for(int i=0;i<size;i++)
+	{
+		cout<<classTests[i].getName()<<": "<<grades[i]<<"%"<<endl;
+	}
+}
+
 /*void Assignment::displayAll() {
 	vector <string> names = getTest().getName();
 	for(it = getGrades.begin(); itt = names.begin();  it != getGrades.end(); itt = names.end(); it++,itt++ ) {
