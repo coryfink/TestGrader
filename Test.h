@@ -6,6 +6,7 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
+#include <cstdlib>
 
 using namespace std;
 
@@ -16,15 +17,15 @@ class Test {
 		float test_grade;
 		int correct_answers;
 
-		vector<string> student_answers;//where we will store new test answers
 		vector<string> fill_in_the_blank;//where we fill in the fill in the blank answers
 		vector<string> key;//the correct answers to the text
-		vector<string> FitB_key;//correct answers to fill in the blank
 
 		vector<bool> correctness;//to make grading easier
 	public:
 		Test();
 		Test(string temp_name);
+
+		vector<string> student_answers;//where we will store new test answers
 
 		void set_name(string student_name);
 
@@ -33,6 +34,8 @@ class Test {
 		float grader(vector<string> student_answers);
 
 		void omitQuestion(vector<string> student_answers, int deletedIndex);
+
+		void delete_index();
 
 		string getName();
 
