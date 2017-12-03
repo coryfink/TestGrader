@@ -34,7 +34,6 @@ class Test {
 		float FitB_grader(vector<string> fill_in_the_blank);
 
 		//accessors
-		vector* get_vector();
 		string getName();
 };
 
@@ -48,10 +47,6 @@ Test::Test(string temp_name) {
 	name = "";
 	assignment_name = temp_name;
 	test_grade = 0.0;
-}
-
-void Test::get_vector() {
-	return *student_answers;
 }
 
 void Test::set_name(string student_name) {
