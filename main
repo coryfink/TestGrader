@@ -1,4 +1,4 @@
-//testing for Final project main
+//Final project main
 #include <string>
 #include <cstdlib>
 #include <iostream>
@@ -10,19 +10,21 @@ using namespace std;
 
 int main () {
 	string answer;
-	while(answer != "no"){
-		if(answer == "new"){
+	while(answer != "no") {
+		if(answer == "new") {
 			cout<<"Would you like to grade a new assignment? (yes/no)\n";
-			cin<<answer;
-			if(answer == "no"){
+			cin>>answer;
+			if(answer == "no") {
 				break;
 			}
 		}
+
+		answer = "new";
 		string input;
 		int choice;
-		Assignment temp_assignment = new Assignment("");
-		Test key = new Test("");
-		Test student_test = new Test("");
+		Assignment temp_assignment = Assignment("");
+		Test key = Test("");
+		Test student_test = Test("");
 		while(input != "exit") {
 			cout << "\tEnter a number for what you would like to do:\n\t1. Enter Key\n\t2. Enter Test\n\t3. Calculate Statistics\n\t4. Omit a Question\n\t5. Add a Curve\n\t6. Print Grades and Statistics\n\texit\n\n\t";
 
@@ -38,31 +40,38 @@ int main () {
 
 			switch ( choice ) {
 				case 1: //key
+					{
 					string temp_name;
 					string temp_file_name;
-					cout<<Please enter a name for your assignment.\n";
-					cin<<temp_name;
-					temp_assignment.set_name = temp_name;
-					key.set_name = temp_name;
+					cout<<"Please enter a name for your assignment.\n";
+					cin>>temp_name;
+					temp_assignment.set_name(temp_name);
+					key.set_name(temp_name);
 					cout<<"Please input your test key file name.\n";
-					cin<<temp_file_name;
+					cin>>temp_file_name;
 					key.answer_input(temp_file_name);
+					}
+
 				break;
 
 				case 2: //enter tests
+					{
 					string student_name;
 					string student_file_name;
 					cout<<"Please enter the student's name\n";
-					cin<<student_name;
-					Test student_test = new Test(student_name);
+					cin>>student_name;
+					Test student_test = Test(student_name);
 					cout<<"Please input your student answer file name.\n";
-					cin<<student_file_name;
+					cin>>student_file_name;
 					student_test.answer_input(student_file_name);
 					//begin grading student test, add mutator to assignment vector
 					temp_assignment.set_vector_index(student_test.grader(student_test.get_vector);
+					}
+
 				break;
 
 				case 3: //calculator
+					{
 					temp_assignment.organizeGrades();
 					temp_assignment.calculateHigh();
 					temp_assignment.calculateLow();
@@ -70,67 +79,80 @@ int main () {
 					temp_assignment.calculateMode();
 					temp_assignment.calculateMedian();
 					temp_assignment.printStatistics();
+					}
 				break;
 
 				case 4: //omitter
+					{
 					cout << "omitter works\n";
 					int deletedIndex;
 					cout<<"Please enter the question number that you would like to have omitted\n";
 					cin>>deletedIndex;
 					if(deletedIndex > 0){
 						temp_assignment.omitQuestion(deletedIndex);
-					}
-					else{
+					} else {
 						cout<<"That question number is invalid\n";
-					}
+					}					
 					//this should be able to ignore a specific questions weight on a grade,
 					//ideally not by just deleting the index at that point on the key/tests, then
 					//send the tests back through the grader code above
+					}
 				break;
 
 				case 5: //curver
+					cout << "curver works\n";
+					//ask for what you want the median/mean/percentiles you want the test to
+					//be at. Then add points to all the tests (every indices in the array)
+					//accordingly
 					temp_assignment.calculateCurve();
 				break;
 
-				case 6: //printer
+				/*case 6: //printer
+					{
 					int choice;
-                            		string input;
-                            		string assignment;
-					string inputName;
-                            		while(true){
+					string input;
+					string assignment;
+
+					
+					while(true){
 						cout << "\tAssignment name: " << endl;
-                                		getline(cin, assignment);
-                                		//Giving the user the option to exit back to the menu incase the assignment isn't in the system or hasn't been calculated
-                                		if((assignment.compare("Menu") = 0)){
-                                    			break;
-                                		}
-						//Making sure the assignment exists and statistics have been calculated. Upperbound set to 200 incase scores are curved heavily
-                                		if((assignment != NULL) ){
-                                    			break;
-                                		}
-                                		else{
-                                    			cout << "\tThe assignment was not found or the statistics have not been calculated. Enter 'Menu' if you need to return.\n" << endl;
-                                		}
+						cin >> assignment;
+						//Giving the user the option to exit back to the menu incase the assignment isn't in the system or hasn't been calculated
+						if(assignment.compare("Menu") == 0){
+							break;
+						} else if(assignment != NULL) {	//Making sure the assignment exists and statistics have been calculated. Upperbound set to 200 incase scores are curved heavily
+							break;
+						} else {
+							cout << "\tThe assignment was not found or the statistics have not been calculated. Enter 'Menu' if you need to return.\n" << endl;
+						}
 					}
-                            		while(input != 4) {
-                                		cout << "\tEnter a number for what you would like to do:\n\t1. Display Statistics (High/Mean/Low)\n\t2. Display all Students and Scores\n\t3. Look up student score by name\n\t 4. Exit";
-                                		cin >> input;                            
-                                		choice = atoi(input.c_str());
-                                		if(input == 4){
-                                    			break;
-                                		}
-                                		switch ( choice ) {
-                                    		case 1: //Statistics
-                                        		assignment.printStatistics();
-                                    		break;
-						case 2: //DisplayAll
-							assignment.displayAll();
-                                		}
-						case 3: //Score by Name
-                            		}
-				break;
+					
+					while(input != 4) {
+						cout << "\tEnter a number for what you would like to do:\n\t1. Display Statistics (High/Mean/Low)\n\t2. Display all Students and Scores\n\t3. Look up student score by name\n\t 4. Exit";
+						cin >> input;
+						choice = atoi(input.c_str());
+						
+						if(input == 4){
+							break;
+						}
+						
+						switch ( input ) {
+							case 1: //Statistics
+								assignment.printStatistics();
+							break;
+
+							case 2:
+								cout << "look up all students\n";
+							break;
+
+							case 3:
+								cout << "look up a specific student\n"; 
+							break;
+						}
+					}
+					}
+				break;*/
 			}
 		}
 	}
-	answers = "new";
 }
