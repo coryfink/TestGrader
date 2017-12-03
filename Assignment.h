@@ -70,7 +70,7 @@ void Assignment::add_test(Test temp) {
 
 //method that calculates the highest value in the vector of grades
 void Assignment::calculateHigh() {
-	float high = 0;
+	high = 0;
 	int size = grades.size();
 	//for loops that accesses each grade in the vector and compares it to the current high
 	for (int i = 0; i < size; i++) {
@@ -82,7 +82,7 @@ void Assignment::calculateHigh() {
 
 //calculates the lowest value in the vector of grades
 void Assignment::calculateLow() {
-	float low = 100;
+	low = 100;
 	int size = grades.size();
 	//for loops that accesses every grade in the vector and compares it to the current low
 	for (int i = 0; i < size; i++) {
