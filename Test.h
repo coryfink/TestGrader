@@ -22,7 +22,7 @@ class Test {
 		vector<string> FitB_key;//correct answers to fill in the blank
 
 		vector<bool> correctness;//to make grading easier
-	public: 
+	public:
 		Test();
 		Test(string temp_name);
 
@@ -31,9 +31,9 @@ class Test {
 		void answer_input(string filename);
 
 		float grader(vector<string> student_answers);
-		float FitB_grader(vector<string> fill_in_the_blank);
 
-		//accessors
+		void omitQuestion(vector<string> student_answers, int deletedIndex);
+
 		string getName();
 };
 
@@ -51,9 +51,6 @@ Test::Test(string temp_name) {
 
 void Test::set_name(string student_name) {
 	name = student_name;
-}
-string Test::getName(){
-	return name;
 }
 
 void Test::answer_input(string filename) {
@@ -105,5 +102,4 @@ float Test::grader(vector<string> student_answers) {
 	test_grade = correct_answers / size;
 	return test_grade;
 }
-
 #endif
