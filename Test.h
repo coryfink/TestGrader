@@ -52,7 +52,8 @@ void Test::set_name(string student_name) {
 	name = student_name;
 }
 vector<string>* Test::get_vector(){
-	return *student_answers;
+	vector<string> * pointer = &student_answers;
+	return pointer;
 }	
 void Test::answer_input(string filename) {
 	ifstream sourceCode;
