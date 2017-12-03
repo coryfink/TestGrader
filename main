@@ -76,9 +76,9 @@ int main () {
 					cout << "omitter works\n";
 					int deletedIndex;
 					cout<<"Please enter the question number that you would like to have omitted\n";
-					cin<<deletedIndex;
+					cin>>deletedIndex;
 					if(deletedIndex > 0){
-						omitQuestion(student_answers, deletedIndex);
+						temp_assignment.omitQuestion(deletedIndex);
 					}
 					else{
 						cout<<"That question number is invalid\n";
