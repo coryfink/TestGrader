@@ -31,8 +31,8 @@ class Test {
 		void answer_input(string filename);
 
 		float grader(vector<string> student_answers);
-
-
+		//accessor methods
+		vector<string>* get_vector();
 		string getName();
 };
 
@@ -51,7 +51,9 @@ Test::Test(string temp_name) {
 void Test::set_name(string student_name) {
 	name = student_name;
 }
-
+vector<string>* Test::get_vector(){
+	return *student_answers;
+}	
 void Test::answer_input(string filename) {
 	ifstream sourceCode;
 	sourceCode.open(filename);
