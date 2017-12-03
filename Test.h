@@ -32,7 +32,6 @@ class Test {
 
 		float grader(vector<string> student_answers);
 
-		void omitQuestion(vector<string> student_answers, int deletedIndex);
 
 		string getName();
 };
