@@ -1,9 +1,4 @@
-/*
- * Assignment.h
- *
- *  Created on: Dec 3, 2017
- *      Author: zanez
- */
+//assignment.h
 #ifndef _ASSIGNMENT_H_
 #define _ASSIGNMENT_H_
 
@@ -22,7 +17,6 @@ class Assignment {
 		string assignmentName;
 		Test temp;
 		vector<Test> classTests;
-		vector<float> grades;
 
 		//float variable assignments
 		float high;
@@ -34,6 +28,8 @@ class Assignment {
 
 	public://Pass in vector containing grades to calculate stats
 		Assignment(string temp_assignment_name);
+
+		vector<float> grades;
 
 		void add_test(Test temp);
 		void calculateHigh();
@@ -114,14 +110,13 @@ float Assignment::calculateMean() {
 
 //adds a curve to the tests
 void Assignment::calculateCurve() {
-//not finished yet, trying to figure out how to return the "curved" grades vector
 	float inputAverage;
 
-	cout << "Please enter the desired average for this exam." << endl;
+	cout << "\tPlease enter the desired average for this exam.\n\t" << endl;
 	cin >> inputAverage;
-
+	
 	float realAverage = calculateMean(); //**calculateMean(grades)
-
+	
 	if (realAverage < inputAverage) {
 		curve = inputAverage - realAverage;
 	} else {
@@ -131,9 +126,9 @@ void Assignment::calculateCurve() {
 	int size = grades.size();
 
 	for (int i = 0; i < size; i++) {
-		grades[i] = grades[i] + curve;
+		grades[i] += curve;
 	}
-	cout<<"Please utilize the Calculate Statistics option in the user interface to see new assignment statistics accounting for the curve.\n";
+	cout<<"\tPlease utilize the Calculate Statistics option in the user interface to see new assignment statistics accounting for the curve.\n";
 }
 
 //Method to organize the vector that holds all the grades
@@ -159,7 +154,7 @@ void Assignment::calculateMode() {
 	int mode = 1;
 	int currentMode = 0;
 	float possibleMode = grades[0];
-	int size = grades.size();
+	int size = grades.size();	
 	for (int i = 1; i < size; i++) {//loops through grades and counts recurring grades
 		if (grades[i] == grades[i - 1]){
 			currentMode++;
@@ -172,9 +167,9 @@ void Assignment::calculateMode() {
 	mode = possibleMode;
 }
 
-//printing method that displays the grade statistics
+//printing method that displays the grade statistics 
 void Assignment::printStatistics(){
-    cout<<"| Mean: "<< mean <<" | High: "<< high << " | Low: "<< low <<endl;
+    cout<<"\t| Mean: "<< mean <<" | High: "<< high << " | Low: "<< low <<" |"<<endl;
 }
 
 void Assignment::printGrades()
@@ -186,8 +181,22 @@ void Assignment::printGrades()
 	}
 }
 
-void Assignment::printAnswers(string studentName)
+void Assignment::printStudentGrade(string studentName)
 {
+	int size=classTests.size();
+	for(int i=0;i<size;i++)
+	{
+		cout <<"student: " << classTests[i].getName() << endl;
+		if ((classTests[i].getName()).find(studentName) != string::npos )
+		{
+			cout << "\t" << classTests[i].getName() << "'s grade is: " << grades[i] << "\n";
+			return;
+		}
+	}
+	cout<<"\tThere is no student named "<<studentName;
+}
+
+void Assignment::printAnswers(string studentName) {
 	int size=classTests.size();
 	for(int i=0;i<size;i++)
 	{
@@ -203,20 +212,6 @@ void Assignment::printAnswers(string studentName)
 	cout<<"There is no student named "<<studentName;
 }
 
-void Assignment::printStudentGrade(string studentName)
-{
-	int size=classTests.size();
-	for(int i=0;i<size;i++)
-	{
-		if(classTests[i].getName()==studentName)
-		{
-			cout<<classTests[i].getName()<<"'s grade is: "<<grades[i]<<endl;
-			return;
-		}
-	}
-	cout<<"There is no student named "<<studentName;
-}
-
 /*void Assignment::displayAll() {
 	vector <string> names = getTest().getName();
 	for(it = getGrades.begin(); itt = names.begin();  it != getGrades.end(); itt = names.end(); it++,itt++ ) {
@@ -225,6 +220,30 @@ void Assignment::printStudentGrade(string studentName)
 }*/
 
 void Assignment::omitQuestion(int deletedIndex) {
+/*	std::vector<Test>::const_iterator iter = classTests.begin();
+
+	// string = NULL
+
+	while (--deletedIndex) {
+		iter++;
+	}
+
+	int size = ((*iter).student_answers).size();
+
+	for (int i = 0; i < size; i++) {
+		((*iter).student_answers).erase(iter);
+	}
+	
+
+	auto iter = classTests.begin();
+
+	// string = NULL
+
+	while (--deletedIndex) {
+		iter++;
+	}
+	*/
+
 	for (auto iter = classTests.begin(); iter != classTests.end(); iter++)
 		(*iter).student_answers[deletedIndex] = "NULL"; 
 }
