@@ -1,3 +1,9 @@
+/*
+ * Main.cpp
+ *
+ *  Created on: Dec 3, 2017
+ *      Author: zanez
+ */
 //Final project main
 #include <string>
 #include <cstdlib>
@@ -36,7 +42,7 @@ int main () {
 			} else {
 				choice = atoi(input.c_str());
 			}
-		
+
 
 			switch ( choice ) {
 				case 1: //key
@@ -92,7 +98,7 @@ int main () {
 //						temp_assignment.omitQuestion(deletedIndex);
 //					} else {
 //						cout<<"That question number is invalid\n";
-//					}					
+//					}
 					//this should be able to ignore a specific questions weight on a grade,
 					//ideally not by just deleting the index at that point on the key/tests, then
 					//send the tests back through the grader code above
@@ -107,13 +113,13 @@ int main () {
 					temp_assignment.calculateCurve();
 				break;
 
-				/*case 6: //printer
+				case 6: //printer
 					{
 					int choice;
 					string input;
 					string assignment;
 
-					
+
 					while(true){
 						cout << "\tAssignment name: " << endl;
 						cin >> assignment;
@@ -126,32 +132,37 @@ int main () {
 							cout << "\tThe assignment was not found or the statistics have not been calculated. Enter 'Menu' if you need to return.\n" << endl;
 						}
 					}
-					
+
 					while(input != 4) {
 						cout << "\tEnter a number for what you would like to do:\n\t1. Display Statistics (High/Mean/Low)\n\t2. Display all Students and Scores\n\t3. Look up student score by name\n\t 4. Exit";
 						cin >> input;
 						choice = atoi(input.c_str());
-						
+
 						if(input == 4){
 							break;
 						}
-						
+
 						switch ( input ) {
 							case 1: //Statistics
-								assignment.printStatistics();
+								cout<<"This assignments' statistics are: "<<endl;
+								temp_assignment.printStatistics();
 							break;
 
-							case 2:
+							case 2: //printing all the grades for this particular assignment
 								cout << "look up all students\n";
+								temp_assignment.printGrades();
 							break;
 
-							case 3:
-								cout << "look up a specific student\n"; 
+							case 3: //printing a specific student's grade
+								cout << "Please input student's name below"<<endl;
+								string sName;
+								cin>>sName;
+								temp_assignment.printStudentGrade(sName);
 							break;
 						}
 					}
 					}
-				break;*/
+				break;
 			}
 		}
 	}
