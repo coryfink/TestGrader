@@ -44,7 +44,7 @@ class Assignment {
 		void organizeGrades();
 	 	void calculateCurve();
 		void printStatistics();
-		void printAnswers();
+		void printAnswers(string studentName);
 		void printGrades();
 		void printStudentGrade(string studentName);
 		//void displayAll();
@@ -184,6 +184,23 @@ void Assignment::printGrades()
 	{
 		cout<<classTests[i].getName()<<": "<<grades[i]<<"%"<<endl;
 	}
+}
+
+void Assignment::printAnswers(string studentName)
+{
+	int size=classTests.size();
+	for(int i=0;i<size;i++)
+	{
+		if(classTests[i].getName()==studentName)
+		{
+			string nameI=classTests[i].getName();
+			cout<<nameI<<"'s answers are: "<<endl;
+			classTests[i].printAnswers();
+			cout<<""<<endl;
+			return;
+		}
+	}
+	cout<<"There is no student named "<<studentName;
 }
 
 void Assignment::printStudentGrade(string studentName)
