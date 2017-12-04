@@ -133,4 +133,3 @@ vector<string> * Test::get_vector() {
 	return pointer;
 }
 #endif
-
