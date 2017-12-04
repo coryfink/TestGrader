@@ -1,4 +1,9 @@
-//assignment.h
+/*
+ * Assignment.h
+ *
+ *  Created on: Dec 3, 2017
+ *      Author: zanez
+ */
 #ifndef _ASSIGNMENT_H_
 #define _ASSIGNMENT_H_
 
@@ -39,9 +44,12 @@ class Assignment {
 		void organizeGrades();
 	 	void calculateCurve();
 		void printStatistics();
+		void printAnswers();
+		void printGrades();
+		void printStudentGrade(string studentName);
 		//void displayAll();
 		//void omitQuestion(int deletedIndex);
-  
+
 		//Accessor methods
 		float getHigh();
 		float getLow();
@@ -111,9 +119,9 @@ void Assignment::calculateCurve() {
 
 	cout << "Please enter the desired average for this exam." << endl;
 	cin >> inputAverage;
-	
+
 	float realAverage = calculateMean(); //**calculateMean(grades)
-	
+
 	if (realAverage < inputAverage) {
 		curve = inputAverage - realAverage;
 	} else {
@@ -151,7 +159,7 @@ void Assignment::calculateMode() {
 	int mode = 1;
 	int currentMode = 0;
 	float possibleMode = grades[0];
-	int size = grades.size();	
+	int size = grades.size();
 	for (int i = 1; i < size; i++) {//loops through grades and counts recurring grades
 		if (grades[i] == grades[i - 1]){
 			currentMode++;
@@ -164,7 +172,7 @@ void Assignment::calculateMode() {
 	mode = possibleMode;
 }
 
-//printing method that displays the grade statistics 
+//printing method that displays the grade statistics
 void Assignment::printStatistics(){
     cout<<"| Mean: "<< mean <<" | High: "<< high << " | Low: "<< low <<endl;
 }
@@ -178,6 +186,20 @@ void Assignment::printGrades()
 	}
 }
 
+void Assignment::printStudentGrade(string studentName)
+{
+	int size=classTests.size();
+	for(int i=0;i<size;i++)
+	{
+		if(classTests[i].getName()==studentName)
+		{
+			cout<<classTests[i].getName()<<"'s grade is: "<<grades[i]<<endl;
+			return;
+		}
+	}
+	cout<<"There is no student named "<<studentName;
+}
+
 /*void Assignment::displayAll() {
 	vector <string> names = getTest().getName();
 	for(it = getGrades.begin(); itt = names.begin();  it != getGrades.end(); itt = names.end(); it++,itt++ ) {
@@ -187,11 +209,9 @@ void Assignment::printGrades()
 /*
 void Assignment::omitQuestion(int deletedIndex) {
 	auto iter = classTests.begin();
-
 	while (deletedIndex--) {
 		iter++;
 	}
-
 	((*iter)->student_answers).erase(iter);
 }
 */
