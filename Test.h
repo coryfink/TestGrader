@@ -14,21 +14,21 @@ class Test {
 	private:
 		string name;
 		string assignment_name;
-		float test_grade;
+
 
 	public:
 		Test();
 		Test(string temp_name);
 
 		vector<string> student_answers;//where we will store new test answers
-
+		float test_grade;
 		void set_name(string student_name);
 
 		string getName();
 
 		void answer_input(string filename);
 
-		float grader(vector<string> student_answers, vector<string> key);
+		float grader(vector<string> student_answers, vector<string> key, bool correct);
 
 		void omitQuestion(vector<string> student_answers, int deletedIndex);
 
@@ -82,40 +82,20 @@ void Test::answer_input(string filename) {
 	}
 }
 
-float Test::grader(vector<string> student_answers, vector<string> key) {
+float Test::grader(vector<string> student_answers, vector<string> key, bool correct) {
 	int key_size = key.size();//make the size a constant to reduce complexity
 	float questions = key.size();
 	float counter = 0;
-	
-	/*for (int i = 0; i < key_size ; i++) {
-		if (student_answers[i] == key[i]) {
-			cout << "\tthe answer is correct\n";
-			//will compare the two and if they are the same, set the correctness array equal to true
-		
-			correctness.push_back(true);
-		} else {
-			cout << "\tthe answer is incorrect\n";
-			//same thing but sets it to false
-			correctness.push_back(false);
-		}
-	}
-	
-	correct_answers = 0;
-	int size = correctness.size();
 
-	for (int i = 0; i < size; i++) {
-		if (correctness[i] == true) {//if the answer is correct
-			correct_answers++;
-			cout << "nom nom \n";
-		}
+	if (!correct) {
+		counter--;
 	}
-	*/
 
 	for (int i = 0; i < key_size ; i++) {
-		if (student_answers[i] == key[i]) {
-			counter++;
-		} else if (student_answers[i] == "NULL") {
+		if (student_answers[i].find("ignorethisanswer") != string::npos) {
 			--questions;
+		} else if (student_answers[i] == key[i]) {
+			counter++;
 		}
 	}
 
