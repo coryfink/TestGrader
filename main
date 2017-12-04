@@ -126,7 +126,7 @@ int main () {
 						//Giving the user the option to exit back to the menu incase the assignment isn't in the system or hasn't been calculated
 						if(assignment.compare("Menu") == 0){
 							break;
-						} else if(assignment != NULL) {	//Making sure the assignment exists and statistics have been calculated. Upperbound set to 200 incase scores are curved heavily
+						} else if(assignment != "") {	//Making sure the assignment exists and statistics have been calculated. Upperbound set to 200 incase scores are curved heavily
 							break;
 						} else {
 							cout << "\tThe assignment was not found or the statistics have not been calculated. Enter 'Menu' if you need to return.\n" << endl;
