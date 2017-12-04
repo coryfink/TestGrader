@@ -20,7 +20,7 @@ class Test {
 		string name;
 		string assignment_name;
 		float test_grade;
-		int correct_answers;
+		float correct_answers;
 
 		vector<string> fill_in_the_blank;//where we fill in the fill in the blank answers
 		vector<string> key;//the correct answers to the text
