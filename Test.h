@@ -1,9 +1,4 @@
-/*
- * Test.h
- *
- *  Created on: Dec 3, 2017
- *      Author: zanez
- */
+//test.h
 #ifndef _TEST_H_
 #define _TEST_H_
 
@@ -20,12 +15,7 @@ class Test {
 		string name;
 		string assignment_name;
 		float test_grade;
-		float correct_answers;
 
-		vector<string> fill_in_the_blank;//where we fill in the fill in the blank answers
-		vector<string> key;//the correct answers to the text
-
-		vector<bool> correctness;//to make grading easier
 	public:
 		Test();
 		Test(string temp_name);
@@ -34,15 +24,15 @@ class Test {
 
 		void set_name(string student_name);
 
+		string getName();
+
 		void answer_input(string filename);
 
-		float grader(vector<string> student_answers);
+		float grader(vector<string> student_answers, vector<string> key);
 
 		void omitQuestion(vector<string> student_answers, int deletedIndex);
 
 		void delete_index();
-
-		string getName();
 
 		vector<string> * get_vector();
 
@@ -56,8 +46,8 @@ Test::Test() {
 }
 
 Test::Test(string temp_name) {
-	name = "";
-	assignment_name = temp_name;
+	name = temp_name;
+	assignment_name = "";
 	test_grade = 0.0;
 }
 
@@ -65,8 +55,7 @@ void Test::set_name(string student_name) {
 	name = student_name;
 }
 
-string Test::getName()
-{
+string Test::getName() {
 	return name;
 }
 
@@ -93,9 +82,10 @@ void Test::answer_input(string filename) {
 	}
 }
 
-float Test::grader(vector<string> student_answers) {
+float Test::grader(vector<string> student_answers, vector<string> key) {
 	int key_size = key.size();//make the size a constant to reduce complexity
-	int counter = 0;
+	float questions = key.size();
+	float counter = 0;
 	
 	/*for (int i = 0; i < key_size ; i++) {
 		if (student_answers[i] == key[i]) {
@@ -125,24 +115,24 @@ float Test::grader(vector<string> student_answers) {
 		if (student_answers[i] == key[i]) {
 			counter++;
 		} else if (student_answers[i] == "NULL") {
-			--key_size;
+			--questions;
 		}
 	}
 
-	test_grade = counter / key_size;
+	test_grade = counter / questions;
+	cout << counter << "/" << questions << endl;
+	cout << test_grade << endl;
 	return test_grade;
-}
-
-void Test::printAnswers()
-{
-	for(vector<string>::iterator sa_iter=student_answers.begin();sa_iter!=student_answers.end();sa_iter++)
-	{
-		cout<<"Answer: "<<*sa_iter<<endl;
-	}
 }
 
 vector<string> * Test::get_vector() {
 	vector<string> * pointer = &student_answers;
 	return pointer;
+}
+
+void Test::printAnswers() {
+	for(vector<string>::iterator sa_iter = student_answers.begin(); sa_iter != student_answers.end(); ++sa_iter) {
+		cout << "Answer: " << *sa_iter << endl;
+	}
 }
 #endif
