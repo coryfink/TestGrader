@@ -95,28 +95,41 @@ void Test::answer_input(string filename) {
 
 float Test::grader(vector<string> student_answers) {
 	int key_size = key.size();//make the size a constant to reduce complexity
-	for (int i = 0; i < key_size ; i++) {
+	int counter = 0;
+	
+	/*for (int i = 0; i < key_size ; i++) {
 		if (student_answers[i] == key[i]) {
-			cout << "the answer is correct" << endl;
+			cout << "\tthe answer is correct\n";
 			//will compare the two and if they are the same, set the correctness array equal to true
-			correctness[i] = true;
+		
+			correctness.push_back(true);
 		} else {
-			cout << "the answer is incorrect" << endl;
+			cout << "\tthe answer is incorrect\n";
 			//same thing but sets it to false
-			correctness[i] = false;
+			correctness.push_back(false);
 		}
 	}
-
+	
 	correct_answers = 0;
 	int size = correctness.size();
 
 	for (int i = 0; i < size; i++) {
-		if (correctness[i]) {//if the answer is correct
+		if (correctness[i] == true) {//if the answer is correct
 			correct_answers++;
+			cout << "nom nom \n";
+		}
+	}
+	*/
+
+	for (int i = 0; i < key_size ; i++) {
+		if (student_answers[i] == key[i]) {
+			counter++;
+		} else if (student_answers[i] == "NULL") {
+			--key_size;
 		}
 	}
 
-	test_grade = correct_answers / size;
+	test_grade = counter / key_size;
 	return test_grade;
 }
 
