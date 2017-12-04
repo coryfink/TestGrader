@@ -48,7 +48,7 @@ class Assignment {
 		void printGrades();
 		void printStudentGrade(string studentName);
 		//void displayAll();
-		//void omitQuestion(int deletedIndex);
+		void omitQuestion(int deletedIndex);
 
 		//Accessor methods
 		float getHigh();
@@ -223,15 +223,12 @@ void Assignment::printStudentGrade(string studentName)
 		cout<< "\t" << *itt << "\t|\t" << *it << endl;
 	}
 }*/
-/*
+
 void Assignment::omitQuestion(int deletedIndex) {
-	auto iter = classTests.begin();
-	while (deletedIndex--) {
-		iter++;
-	}
-	((*iter)->student_answers).erase(iter);
+	for (auto iter = classTests.begin(); iter != classTests.end(); iter++)
+		(*iter).student_answers[deletedIndex] = "NULL"; 
 }
-*/
+
 //accessor methods for grade statistics
 float Assignment::getHigh() {
 	return high;
