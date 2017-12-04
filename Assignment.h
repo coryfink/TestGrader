@@ -189,7 +189,7 @@ void Assignment::printStudentGrade(string studentName)
 		cout <<"student: " << classTests[i].getName() << endl;
 		if ((classTests[i].getName()).find(studentName) != string::npos )
 		{
-			cout << "\t" << classTests[i].getName() << "'s grade is: " << grades[i] << "\n";
+			cout << "\t" << classTests[i].getName() << "'s grade is: " << grades[i] << "%\n";
 			return;
 		}
 	}
