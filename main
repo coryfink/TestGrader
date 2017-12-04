@@ -3,159 +3,144 @@
 #include <cstdlib>
 #include <iostream>
 #include <vector>
-#include "Assignment.h"
-#include "Test.h"
+#include "assignment.h"
+#include "test.h"
 
 using namespace std;
 
 int main () {
-	string answer;
-	while(answer != "no") {
-		if(answer == "new") {
-			cout<<"\tWould you like to grade a new assignment? (yes/no)\n\t";
-			cin>>answer;
-			if(answer == "no") {
-				break;
-			}
-		}
-
-		answer = "new";
+	string input = "";
+	while(input != "exit") {
 		string input;
 		int choice;
 		Assignment temp_assignment = Assignment("");
 		Test key = Test("key");
 		Test student_test = Test("");
-		while(input != "exit") {
-			cout << "\tEnter a number for what you would like to do:\n\t1. Enter Key\n\t2. Enter Test\n\t3. Calculate Statistics\n\t4. Omit a Question\n\t5. Add a Curve\n\t6. Print Grades and Statistics\n\texit\n\n\t";
 
-			cin >> input;
+		cout << "\tEnter a number for what you would like to do:\n\t1. Enter Key\n\t2. Enter Test\n\t3. Calculate Statistics\n\t4. Omit a Question\n\t5. Add a Curve\n\t6. Print Grades and Statistics\n\texit\n\n\t";
 
+		cin >> input;
 
-			if (input == "exit") {
-				break; //should break the loops if input is exit, otherwise continues to the switch case
-			} else {
-				choice = atoi(input.c_str());
-			}
-		
+		if (input == "exit") {
+			break; //should break the loops if input is exit, otherwise continues to the switch case
+		} else {
+			choice = atoi(input.c_str());
+		}	
 
-			switch ( choice ) {
-				case 1: //key
-					{
-					string temp_name;
-					string temp_file_name;
-					cout<<"Please enter a name for your assignment.\n";
-					cin>>temp_name;
-					temp_assignment.set_name(temp_name);
-					cout<<"Please input your test key file name.\n";
-					cin>>temp_file_name;
-					key.answer_input(temp_file_name);
-					}
+		switch ( choice ) {
+			case 1: //key
+				{
+				string temp_name;
+				string temp_file_name;
+				cout<<"Please enter a name for your assignment.\n";
+				cin>>temp_name;
+				temp_assignment.set_name(temp_name);
+				cout<<"Please input your test key file name.\n";
+				cin>>temp_file_name;
+				key.answer_input(temp_file_name);
+				}
 
-				break;
+			break;
 
-				case 2: //enter tests
-					{
-					string student_name;
-					string student_file_name;
-					cout<<"Please enter the student's name\n";
-					cin>>student_name;
-					Test student_test = Test(student_name);
-					temp_assignment.add_test(student_test);
-					cout<<"Please input your student answer file name.\n";
-					cin>>student_file_name;
-					student_test.answer_input(student_file_name);
+			case 2: //enter tests
+				{
+				string student_name;
+				string student_file_name;
+				cout<<"Please enter the student's name\n";
+				cin>>student_name;
+				Test student_test = Test(student_name);
+				cout<<"Please input your student answer file name.\n";
+				cin>>student_file_name;
+				student_test.answer_input(student_file_name);
+				//begin grading student test, add mutator to assignment vector
+				temp_assignment.set_vector_index(student_test.grader(*student_test.get_vector(),*key.get_vector(), true));
+				temp_assignment.add_test(student_test);
+				}
+			break;
 
-					//begin grading student test, add mutator to assignment vector
-					temp_assignment.set_vector_index(student_test.grader(*student_test.get_vector(),*key.get_vector()));
-					}
-				break;
+			case 3: //calculator
+				{
+				temp_assignment.calculateHigh();
+				temp_assignment.calculateLow();
+				temp_assignment.calculateMean();
+				temp_assignment.calculateMode();
+				temp_assignment.calculateMedian();
+				temp_assignment.printStatistics();
+				}
+			break;
 
-				case 3: //calculator
-					{
-					temp_assignment.organizeGrades();
-					temp_assignment.calculateHigh();
-					temp_assignment.calculateLow();
-					temp_assignment.calculateMean();
-					temp_assignment.calculateMode();
-					temp_assignment.calculateMedian();
-					temp_assignment.printStatistics();
-					}
-				break;
+			case 4: //omitter
+				{
+				int deletedIndex;
+				cout<<"\tPlease enter the question number that you would like to have omitted\n\t";
+				cin>>deletedIndex;
+				bool checker = false;
 
-				case 4: //omitter
-					{
-					int deletedIndex;
-					cout<<"\tPlease enter the question number that you would like to have omitted\n\t";
-					cin>>deletedIndex;
-					if(deletedIndex > 0){
-						temp_assignment.omitQuestion(deletedIndex);
+				temp_assignment.omitQuestion(deletedIndex, key.student_answers, checker);
+				temp_assignment.calculateHigh();
+				temp_assignment.calculateLow();
+				temp_assignment.calculateMean();
+				temp_assignment.calculateMode();
+				temp_assignment.printStatistics();
+
+				//this should be able to ignore a specific questions weight on a grade,
+				//ideally not by just deleting the index at that point on the key/tests, then
+				//send the tests back through the grader code above
+				}
+			break;
+
+			case 5: //curver
+				//ask for what you want the median/mean/percentiles you want the test to
+				//be at. Then add points to all the tests (every indices in the array)
+				//accordingly
+				temp_assignment.calculateCurve();
+			break;
+
+			case 6: //printer
+				{
+				int input;
+				string assignment;
+
+				while(true) {
+					cout << "\tAssignment name:\n\t";
+					cin >> assignment;
+					//Giving the user the option to exit back to the menu incase the assignment isn't in the system or hasn't been calculated
+					if(assignment.compare("Menu") == 0){
+						break;
+					} else if(assignment != "") {	//Making sure the assignment exists and statistics have been calculated. Upperbound set to 200 incase scores are curved heavily
+						break;
 					} else {
-						cout<<"That question number is invalid\n";
-					}					
-					//this should be able to ignore a specific questions weight on a grade,
-					//ideally not by just deleting the index at that point on the key/tests, then
-					//send the tests back through the grader code above
+						cout << "\tThe assignment was not found or the statistics have not been calculated. Enter 'Menu' if you need to return.\n" << endl;
 					}
-				break;
+				}
 
-				case 5: //curver
-					//ask for what you want the median/mean/percentiles you want the test to
-					//be at. Then add points to all the tests (every indices in the array)
-					//accordingly
-					temp_assignment.calculateCurve();
-				break;
+				while(input != 3) {
+					cout << "\tEnter a number for what you would like to do:\n\t1. Display all Students and Scores\n\t2. Look up student score by name\n\t3. Exit\n\t";
+					string choice;
+					cin >> choice;
 
-				case 6: //printer
-					{
-					int input;
-					string assignment;
+					input = atoi(choice.c_str());
 
-
-					while(true){
-						cout << "\tAssignment name:\n\t";
-						cin >> assignment;
-						//Giving the user the option to exit back to the menu incase the assignment isn't in the system or hasn't been calculated
-						if(assignment.compare("Menu") == 0){
-							break;
-						} else if(assignment != "") {	//Making sure the assignment exists and statistics have been calculated. Upperbound set to 200 incase scores are curved heavily
-							break;
-						} else {
-							cout << "\tThe assignment was not found or the statistics have not been calculated. Enter 'Menu' if you need to return.\n" << endl;
-						}
+					if (input == 3) {
+						break;
 					}
 
-					while(input != 4) {
-						cout << "\tEnter a number for what you would like to do:\n\t1. Display Statistics (High/Mean/Low)\n\t2. Display all Students and Scores\n\t3. Look up student score by name\n\t4. Exit\n\t";
-						string choice;
-						cin >> choice;
+					switch ( input ) {
+						case 1: //printing all the grades for this particular assignment
+							temp_assignment.printGrades();
+						break;
 
-						input = atoi(choice.c_str());
-
-						if(input == 4){
-							break;
-						}
-
-						switch ( input ) {
-							case 1: //Statistics
-								cout<<"\tThis assignments' statistics are: "<<endl;
-								temp_assignment.printStatistics();
-							break;
-
-							case 2: //printing all the grades for this particular assignment
-								temp_assignment.printGrades();
-							break;
-
-							case 3: //printing a specific student's grade
-								cout << "\tPlease input student's name below\n\t";
-								string sName;
-								cin>>sName;
-								temp_assignment.printStudentGrade(sName);
-							break;
-						}
+						case 2: //printing a specific student's grade
+							cout << "\tPlease input student's name below\n\t";
+							string sName;
+							cin>>sName;
+							temp_assignment.printStudentGrade(sName);
+						break;
 					}
-					}
-				break;
-			}
+				}
+				}
+			break;
 		}
 	}
+}
 }
