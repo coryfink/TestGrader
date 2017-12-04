@@ -3,8 +3,8 @@
 #include <cstdlib>
 #include <iostream>
 #include <vector>
-#include "assignment.h"
-#include "test.h"
+#include "Assignment.h"
+#include "Test.h"
 
 using namespace std;
 
