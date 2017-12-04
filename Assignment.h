@@ -6,7 +6,6 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
-#include <algorithm>
 #include "Test.h"
 
 using namespace std;
@@ -37,14 +36,13 @@ class Assignment {
  		float calculateMean();
  		void calculateMode();
  		void calculateMedian();
-		void organizeGrades();
 	 	void calculateCurve();
 		void printStatistics();
 		void printAnswers(string studentName);
 		void printGrades();
 		void printStudentGrade(string studentName);
 		//void displayAll();
-		void omitQuestion(int deletedIndex);
+		void omitQuestion(int deletedIndex, vector<string> test_key, bool correct);
 
 		//Accessor methods
 		float getHigh();
@@ -111,8 +109,9 @@ float Assignment::calculateMean() {
 //adds a curve to the tests
 void Assignment::calculateCurve() {
 	float inputAverage;
+	string temp = assignmentName;
 
-	cout << "\tPlease enter the desired average for this exam.\n\t" << endl;
+	cout << "\tPlease enter the desired average for this exam.\n\t";
 	cin >> inputAverage;
 	
 	float realAverage = calculateMean(); //**calculateMean(grades)
@@ -128,12 +127,7 @@ void Assignment::calculateCurve() {
 	for (int i = 0; i < size; i++) {
 		grades[i] += curve;
 	}
-	cout<<"\tPlease utilize the Calculate Statistics option in the user interface to see new assignment statistics accounting for the curve.\n";
-}
-
-//Method to organize the vector that holds all the grades
-void Assignment::organizeGrades(){
-	sort(grades.begin(), grades.end());//using sort function for vectors (algorithm header)
+	assignmentName = temp;
 }
 
 //I think .size will give us a bit value of the actual size of the array, not
@@ -177,7 +171,7 @@ void Assignment::printGrades()
 	int size=classTests.size();
 	for(int i=0;i<size;i++)
 	{
-		cout<<classTests[i].getName()<<": "<<grades[i]<<"%"<<endl;
+		cout<<classTests[i].getName()<<": "<< grades[i] <<"%"<<endl;
 	}
 }
 
@@ -189,7 +183,7 @@ void Assignment::printStudentGrade(string studentName)
 		cout <<"student: " << classTests[i].getName() << endl;
 		if ((classTests[i].getName()).find(studentName) != string::npos )
 		{
-			cout << "\t" << classTests[i].getName() << "'s grade is: " << grades[i] << "%\n";
+			cout << "\t" << classTests[i].getName() << "'s grade is: " << grades[i] << "\n";
 			return;
 		}
 	}
@@ -219,33 +213,20 @@ void Assignment::printAnswers(string studentName) {
 	}
 }*/
 
-void Assignment::omitQuestion(int deletedIndex) {
-/*	std::vector<Test>::const_iterator iter = classTests.begin();
-
-	// string = NULL
-
-	while (--deletedIndex) {
-		iter++;
-	}
-
-	int size = ((*iter).student_answers).size();
-
+void Assignment::omitQuestion(int deletedIndex, vector<string> test_key, bool correct) {
+	int size = classTests.size();
+	string temp = test_key[deletedIndex];
 	for (int i = 0; i < size; i++) {
-		((*iter).student_answers).erase(iter);
+		if (classTests[i].student_answers[deletedIndex] == temp) {
+			correct = true;
+			cout << "fuck my life\n";
+		}
+		test_key[deletedIndex] = "ignorethisanswer";
+		classTests[i].student_answers[deletedIndex] = "ignorethisanswer";
+		grades[i] = classTests[i].grader(classTests[i].student_answers, test_key, correct);
+		cout << "i am counting " << i << endl;
+		correct = false;
 	}
-	
-
-	auto iter = classTests.begin();
-
-	// string = NULL
-
-	while (--deletedIndex) {
-		iter++;
-	}
-	*/
-
-	for (auto iter = classTests.begin(); iter != classTests.end(); iter++)
-		(*iter).student_answers[deletedIndex] = "NULL"; 
 }
 
 //accessor methods for grade statistics
